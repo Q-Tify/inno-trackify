@@ -8,7 +8,7 @@ run-server: install create-db
 	cd ./backend && poetry run uvicorn app.main:app --reload
 
 run-frontend: install create-db
-	poetry run streamlit run frontend/app.py
+	poetry run streamlit run frontend/1_🏠_Home.py
 
 run: install create-db
 	cd ./backend && poetry run uvicorn app.main:app --reload & 
