@@ -1,0 +1,2 @@
+1     E501 line too long (80 > 79 characters)
+20    F401 'fastapi.security.OAuth2PasswordBearer' imported but unused
