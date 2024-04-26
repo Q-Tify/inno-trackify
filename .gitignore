@@ -1,2 +1,8 @@
 *.db
 *.lock
+
+.venv
+reports
+
+.idea
+*.pyc

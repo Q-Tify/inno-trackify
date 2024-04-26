@@ -1,0 +1,60 @@
+---
+name: lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  linter:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.11]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      branchname: "${{ github.head_ref || github.ref_name }}"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: '1.7.1'
+
+      - name: Setup a local virtual environment (if no poetry.toml file)
+        run: |
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+
+      - uses: actions/cache@v3
+        name: Define a cache for the virtual environment based on the dependencies lock file
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+
+      - name: Run black
+        run: make lint-black
+      - name: Run flake8
+        run: |
+          mkdir -p ./files/${{ env.branchname }}/reports/flake8
+          make lint-flake8 ARGS="--exit-zero --format=html --htmldir ./files/${{ env.branchname }}/reports/flake8 --statistics --tee --output-file ./files/${{ env.branchname }}/reports/flake8/flake8stats.txt"
+      - name: Install badges
+        run: |
+          mkdir -p ./files/${{ env.branchname }}/reports/badges
+          poetry run genbadge flake8 -i ./files/${{ env.branchname }}/reports/flake8/flake8stats.txt -o ./files/${{ env.branchname }}/reports/badges/flake8.svg
+
+      - name: Update GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./files/
+          publish_branch: gh-pages
+          keep_files: true
