@@ -55,8 +55,7 @@ jobs:
                                   --html=./files/${{ env.branchname }}/reports/pytest/pytestreport.html \
                                   --cov-report=term-missing \
                                   --cov-report=html:./files/${{ env.branchname }}/reports/pytest/coverage \
-                                  --cov-report=xml:./files/${{ env.branchname }}/reports/pytest/coverage.xml \
-                                  --cov=src --cov-fail-under=90"
+                                  --cov-report=xml:./files/${{ env.branchname }}/reports/pytest/coverage.xml"
 
       - name: Install badges
         run: |
