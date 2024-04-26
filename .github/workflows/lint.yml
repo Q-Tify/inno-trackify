@@ -47,17 +47,24 @@ jobs:
         run: |
           mkdir -p ./files/${{ env.branchname }}/reports/flake8
           make lint-flake8 ARGS="--exit-zero --format=html --htmldir ./files/${{ env.branchname }}/reports/flake8 --statistics --tee --output-file ./files/${{ env.branchname }}/reports/flake8/flake8stats.txt"
+      
       - name: Run pytest
         run: |
           mkdir -p ./files/${{ env.branchname }}/reports/pytest
-          make test-backend ARGS="--junitxml=./files/${{ env.branchname }}/reports/pytest/pyteststats.txt --html=./files/${{ env.branchname }}/reports/pytest/pytestreport.html"
+          make test-backend ARGS="--junitxml=./files/${{ env.branchname }}/reports/pytest/pyteststats.txt \
+                                  --html=./files/${{ env.branchname }}/reports/pytest/pytestreport.html \
+                                  --cov-report=term-missing \
+                                  --cov-report=html:./files/${{ env.branchname }}/reports/pytest/coverage \
+                                  --cov-report=xml:./files/${{ env.branchname }}/reports/pytest/coverage.xml \
+                                  --cov=src --cov-fail-under=90"
 
       - name: Install badges
         run: |
           mkdir -p ./files/${{ env.branchname }}/reports/badges
           poetry run genbadge flake8 -i ./files/${{ env.branchname }}/reports/flake8/flake8stats.txt -o ./files/${{ env.branchname }}/reports/badges/flake8.svg
           poetry run genbadge tests -i ./files/${{ env.branchname }}/reports/pytest/pyteststats.txt -o ./files/${{ env.branchname }}/reports/badges/pytest.svg
-
+          genbadge coverage -i ./files/${{ env.branchname }}/reports/pytest/coverage.xml -o ./files/${{ env.branchname }}/reports/badges/coverage.svg
+      
       - name: Update GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
