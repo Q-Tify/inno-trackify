@@ -29,4 +29,7 @@ lint-flake8: install ## Run flake8 linter.
 test-backend: install ## Run tests.
 	@$(ENV_PREFIX)pytest --cov=backend/app --cov-branch $(ARGS) backend/tests
 
+bandit: install ## Run bandit.
+	@$(ENV_PREFIX)bandit -r backend/app
+
 lint: lint-black lint-flake8 ## Run all linters.

@@ -43,6 +43,9 @@ jobs:
       - name: Run black
         run: make lint-black
 
+      - name: Run bandit
+        run: make bandit
+
       - name: Run flake8
         run: |
           mkdir -p ./files/${{ env.branchname }}/reports/flake8
