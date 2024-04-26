@@ -7,6 +7,16 @@ To run service manually:
 make run
 ```
 
+To run the backend:
+```
+poetry run uvicorn app.main:app --reload
+```
+
+To run the frontend:
+```
+poetry run streamlit run frontend/1_🏠_Home.py
+```
+
 ## Using Swagger UI for API Documentation
 
 Once the backend is running, you can access the Swagger UI to explore the API documentation:
@@ -17,3 +27,4 @@ Once the backend is running, you can access the Swagger UI to explore the API do
 4. You can also try out the endpoints by clicking the "Try it out" button, filling in the required parameters, and clicking "Execute".
 
 You can now use Swagger UI to understand and interact with the API endpoints provided by the inno-trackify backend.
+
