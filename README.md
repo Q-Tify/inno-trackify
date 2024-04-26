@@ -12,5 +12,5 @@ poetry run uvicorn app.main:app --reload
 
 To run the frontend:
 ```
-poetry run streamlit run frontend/app.py
+poetry run streamlit run frontend/Home.py
 ```
