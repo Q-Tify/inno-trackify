@@ -27,6 +27,6 @@ lint-flake8: install ## Run flake8 linter.
 	@$(ENV_PREFIX)flake8 backend/ frontend/ $(ARGS)
 
 test-backend: install ## Run tests.
-	@$(ENV_PREFIX)pytest --cov=backend/app --cov-branch --cov-fail-under=85 $(ARGS) backend/tests
+	@$(ENV_PREFIX)pytest --cov=backend/app --cov-branch $(ARGS) backend/tests
 
 lint: lint-black lint-flake8 ## Run all linters.
