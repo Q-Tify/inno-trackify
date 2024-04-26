@@ -53,7 +53,7 @@ jobs:
           mkdir -p ./files/${{ env.branchname }}/reports/pytest
           make test-backend ARGS="--junitxml=./files/${{ env.branchname }}/reports/pytest/pyteststats.txt \
                                   --html=./files/${{ env.branchname }}/reports/pytest/pytestreport.html \
-                                  --cov-report=term-missing
+                                  --cov-report=term-missing"
           coverage report html --directory=./files/${{ env.branchname }}/reports/pytest
           coverage xml --directory=./files/${{ env.branchname }}/reports/pytest
 
