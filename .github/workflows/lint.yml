@@ -54,8 +54,8 @@ jobs:
           make test-backend ARGS="--junitxml=./files/${{ env.branchname }}/reports/pytest/pyteststats.txt \
                                   --html=./files/${{ env.branchname }}/reports/pytest/pytestreport.html \
                                   --cov-report=term-missing"
-          poetry run coverage report html --directory=./files/${{ env.branchname }}/reports/pytest
-          poetry run coverage xml --directory=./files/${{ env.branchname }}/reports/pytest
+          poetry run coverage html --directory=./files/${{ env.branchname }}/reports/pytest/coverage
+          poetry run coverage xml -o=./files/${{ env.branchname }}/reports/pytest/coverage.xml
 
       - name: Install badges
         run: |
