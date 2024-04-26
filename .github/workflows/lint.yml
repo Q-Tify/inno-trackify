@@ -55,7 +55,7 @@ jobs:
                                   --html=./files/${{ env.branchname }}/reports/pytest/pytestreport.html \
                                   --cov-report=term-missing"
           poetry run coverage html --directory=./files/${{ env.branchname }}/reports/pytest/coverage
-          poetry run coverage xml -o=./files/${{ env.branchname }}/reports/pytest/coverage.xml
+          poetry run coverage xml -o ./files/${{ env.branchname }}/reports/pytest/coverage.xml
 
       - name: Install badges
         run: |
