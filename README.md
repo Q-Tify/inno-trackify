@@ -5,6 +5,8 @@
 
 # inno-trackify
 
+First you need to copy the example.env file to source.env and change the values of the variables to the ones you need
+
 To run service manually:
 ```
 make run
