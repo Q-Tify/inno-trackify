@@ -39,6 +39,10 @@ jobs:
         with:
           path: ./.venv
           key: venv-${{ hashFiles('poetry.lock') }}
+      
+      - name: Inject secrets
+        run: |
+          echo "{{ secrets.ALL_SECRETS }}" > source.env
 
       - name: Run black
         run: make lint-black
