@@ -164,43 +164,49 @@
                class="code sev- "><tt><i>40</i>     <span class="n">access_token</span> <span class="o">=</span> <span class="n">crud_auth</span><span class="o">.</span><span class="n">create_access_token</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">})</span></tt>
             </div>
             <div id="l41"
-               class="code sev- "><tt><i>41</i>     <span class="k">return</span> <span class="n">schemas_auth</span><span class="o">.</span><span class="n">Token</span><span class="p">(</span><span class="n">access_token</span><span class="o">=</span><span class="n">access_token</span><span class="p">,</span> <span class="n">token_type</span><span class="o">=</span><span class="s2">&quot;bearer&quot;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>41</i>     <span class="k">return</span> <span class="n">schemas_auth</span><span class="o">.</span><span class="n">Token</span><span class="p">(</span></tt>
             </div>
             <div id="l42"
-               class="code sev- "><tt><i>42</i> &nbsp;</tt>
+               class="code sev- "><tt><i>42</i>         <span class="n">access_token</span><span class="o">=</span><span class="n">access_token</span><span class="p">,</span> <span class="n">token_type</span><span class="o">=</span><span class="s2">&quot;bearer&quot;</span></tt>
             </div>
             <div id="l43"
-               class="code sev- "><tt><i>43</i> &nbsp;</tt>
+               class="code sev- "><tt><i>43</i>     <span class="p">)</span>  <span class="c1"># # nosec B106</span></tt>
             </div>
             <div id="l44"
-               class="code sev- "><tt><i>44</i> <span class="k">def</span> <span class="nf">authenticate_user</span><span class="p">(</span><span class="n">db</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>44</i> &nbsp;</tt>
             </div>
             <div id="l45"
-               class="code sev- "><tt><i>45</i>     <span class="k">try</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>45</i> &nbsp;</tt>
             </div>
             <div id="l46"
-               class="code sev- "><tt><i>46</i>         <span class="n">username</span> <span class="o">=</span> <span class="n">crud_auth</span><span class="o">.</span><span class="n">get_username_from_token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>46</i> <span class="k">def</span> <span class="nf">authenticate_user</span><span class="p">(</span><span class="n">db</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span></tt>
             </div>
             <div id="l47"
-               class="code sev- "><tt><i>47</i>         <span class="k">if</span> <span class="n">username</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>47</i>     <span class="k">try</span><span class="p">:</span></tt>
             </div>
             <div id="l48"
-               class="code sev- "><tt><i>48</i>             <span class="k">return</span> <span class="kc">None</span></tt>
+               class="code sev- "><tt><i>48</i>         <span class="n">username</span> <span class="o">=</span> <span class="n">crud_auth</span><span class="o">.</span><span class="n">get_username_from_token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span></tt>
             </div>
             <div id="l49"
-               class="code sev- "><tt><i>49</i> &nbsp;</tt>
+               class="code sev- "><tt><i>49</i>         <span class="k">if</span> <span class="n">username</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span></tt>
             </div>
             <div id="l50"
-               class="code sev- "><tt><i>50</i>         <span class="k">return</span> <span class="n">crud_users</span><span class="o">.</span><span class="n">get_user_by_username</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">username</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>50</i>             <span class="k">return</span> <span class="kc">None</span></tt>
             </div>
             <div id="l51"
-               class="code sev- "><tt><i>51</i>     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>51</i> &nbsp;</tt>
             </div>
             <div id="l52"
-               class="code sev- "><tt><i>52</i>         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error authenticating user: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>52</i>         <span class="k">return</span> <span class="n">crud_users</span><span class="o">.</span><span class="n">get_user_by_username</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">username</span><span class="p">)</span></tt>
             </div>
             <div id="l53"
-               class="code sev- "><tt><i>53</i>         <span class="k">return</span> <span class="kc">None</span></tt>
+               class="code sev- "><tt><i>53</i>     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span></tt>
+            </div>
+            <div id="l54"
+               class="code sev- "><tt><i>54</i>         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error authenticating user: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l55"
+               class="code sev- "><tt><i>55</i>         <span class="k">return</span> <span class="kc">None</span></tt>
             </div>
             
          </div>
