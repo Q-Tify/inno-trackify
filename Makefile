@@ -1,8 +1,10 @@
 .ONESHELL:
 ENV_PREFIX=$(shell python -c "if __import__('pathlib').Path('.venv/bin/pip').exists(): print('.venv/bin/')")
 
+ifdef ./source.env
 include ./source.env
 export $(shell sed 's/=.*//' ./source.env)
+endif
 
 help:             ## Show the help.
 	@echo "Usage: make <target>"
