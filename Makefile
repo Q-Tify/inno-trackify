@@ -14,14 +14,12 @@ install:          ## Install the project in dev mode.
 	poetry install --no-root
 
 run-server: install
-	env
 	cd ./backend && poetry run uvicorn app.main:app --reload --host 0.0.0.0
 
 run-frontend: install
 	poetry run streamlit run frontend/app.py
 
 run: install
-	env
 	cd ./backend && poetry run uvicorn app.main:app --reload & 
 	poetry run streamlit run frontend/app.py
 
