@@ -8,7 +8,12 @@ ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
 RUN apt-get update && apt-get install --no-install-recommends -y curl make \
     && curl -sSL https://install.python-poetry.org | python \
-    && apt-get clean
+    && apt-get clean \
+    && addgroup -S nonroot \
+    && adduser -S nonroot -G nonroot
+
+
+USER nonroot
 
 WORKDIR /app
 
