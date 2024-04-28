@@ -1,6 +1,11 @@
 .ONESHELL:
 ENV_PREFIX=$(shell python -c "if __import__('pathlib').Path('.venv/bin/pip').exists(): print('.venv/bin/')")
 
+ifdef ./source.env
+include ./source.env
+export $(shell sed 's/=.*//' ./source.env)
+endif
+
 help:             ## Show the help.
 	@echo "Usage: make <target>"
 	@echo ""
@@ -11,7 +16,7 @@ install:          ## Install the project in dev mode.
 	poetry install --no-root
 
 run-server: install
-	cd ./backend && poetry run uvicorn app.main:app --reload
+	cd ./backend && poetry run uvicorn app.main:app --reload --host 0.0.0.0
 
 run-frontend: install create-db
 	poetry run streamlit run frontend/1_🏠_Home.py
@@ -25,5 +30,11 @@ lint-black: install ## Run black linter.
 
 lint-flake8: install ## Run flake8 linter.
 	@$(ENV_PREFIX)flake8 backend/ frontend/ $(ARGS)
+
+test-backend: install ## Run tests.
+	@$(ENV_PREFIX)pytest --cov=backend/app --cov-branch $(ARGS) backend/tests
+
+bandit: install ## Run bandit.
+	@$(ENV_PREFIX)bandit -r backend/app
 
 lint: lint-black lint-flake8 ## Run all linters.

@@ -1,6 +1,11 @@
-![Lint](https://github.com/Q-Tify/inno-trackify/actions/workflows/lint.yml/badge.svg?branch=actions)
+![Lint](https://github.com/Q-Tify/inno-trackify/actions/workflows/lint.yml/badge.svg?branch=main)
 [![Flake8 Status](https://q-tify.github.io/inno-trackify/main/reports/badges/flake8.svg)](https://q-tify.github.io/inno-trackify/main/reports/flake8/index.html)
+[![Tests](https://q-tify.github.io/inno-trackify/main/reports/badges/pytest.svg)](https://q-tify.github.io/inno-trackify/main/reports/pytest/pytestreport.html)
+[![Coverage](https://q-tify.github.io/inno-trackify/main/reports/badges/coverage.svg)](https://q-tify.github.io/inno-trackify/main/reports/pytest/coverage/index.html)
+
 # inno-trackify
+
+First you need to copy the example.env file to source.env and change the values of the variables to the ones you need
 
 To run service manually:
 ```

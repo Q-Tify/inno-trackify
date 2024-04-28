@@ -39,18 +39,42 @@ jobs:
         with:
           path: ./.venv
           key: venv-${{ hashFiles('poetry.lock') }}
+      
+      - name: Inject secrets
+        env:
+          ALL_SECRETS: ${{ secrets.ALL_SECRETS }}
+        run: |
+          echo $ALL_SECRETS
+          echo $ALL_SECRETS > source.env
 
       - name: Run black
         run: make lint-black
+
+      - name: Run bandit
+        run: make bandit
+
       - name: Run flake8
         run: |
           mkdir -p ./files/${{ env.branchname }}/reports/flake8
           make lint-flake8 ARGS="--exit-zero --format=html --htmldir ./files/${{ env.branchname }}/reports/flake8 --statistics --tee --output-file ./files/${{ env.branchname }}/reports/flake8/flake8stats.txt"
+      
+      - name: Run pytest
+        run: |
+          mkdir -p ./files/${{ env.branchname }}/reports/pytest/coverage
+          make test-backend ARGS="--junitxml=./files/${{ env.branchname }}/reports/pytest/pyteststats.txt \
+                                  --html=./files/${{ env.branchname }}/reports/pytest/pytestreport.html \
+                                  --cov-report=term-missing"
+          poetry run coverage html --directory=./files/${{ env.branchname }}/reports/pytest/coverage
+          poetry run coverage xml -o ./files/${{ env.branchname }}/reports/pytest/coverage.xml
+          rm ./files/${{ env.branchname }}/reports/pytest/coverage/.gitignore
+
       - name: Install badges
         run: |
           mkdir -p ./files/${{ env.branchname }}/reports/badges
           poetry run genbadge flake8 -i ./files/${{ env.branchname }}/reports/flake8/flake8stats.txt -o ./files/${{ env.branchname }}/reports/badges/flake8.svg
-
+          poetry run genbadge tests -i ./files/${{ env.branchname }}/reports/pytest/pyteststats.txt -o ./files/${{ env.branchname }}/reports/badges/pytest.svg
+          poetry run genbadge coverage -i ./files/${{ env.branchname }}/reports/pytest/coverage.xml -o ./files/${{ env.branchname }}/reports/badges/coverage.svg
+      
       - name: Update GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -58,3 +82,4 @@ jobs:
           publish_dir: ./files/
           publish_branch: gh-pages
           keep_files: true
+
