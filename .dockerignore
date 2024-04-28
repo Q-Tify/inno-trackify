@@ -1,0 +1,12 @@
+*.db
+*.lock
+
+.venv
+reports
+
+.idea
+*.pyc
+
+__pycache__
+.coverage
+.pytest_cache

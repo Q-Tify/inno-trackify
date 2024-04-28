@@ -38,3 +38,9 @@ bandit: install ## Run bandit.
 	@$(ENV_PREFIX)bandit -r backend/app
 
 lint: lint-black lint-flake8 ## Run all linters.
+
+build-frontend: ## Build the docker image.
+	docker build . -t inno-trakify-frontend -f Dockerfile.frontend
+
+build-backend: ## Build the docker image.
+	docker build . -t inno-trakify-backend -f Dockerfile.backend
