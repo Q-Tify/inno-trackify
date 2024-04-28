@@ -22,7 +22,7 @@ run-frontend: install
 	poetry run streamlit run frontend/app.py
 
 run: install
-	cd ./backend && poetry run uvicorn app.main:app --reload & 
+	cd ./backend && poetry run uvicorn app.main:app --reload --host 0.0.0.0 & 
 	poetry run streamlit run frontend/app.py
 
 lint-black: install ## Run black linter.
