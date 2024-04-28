@@ -7,15 +7,12 @@ ENV POETRY_VERSION=1.7.1 \
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
 RUN apt-get update && apt-get install --no-install-recommends -y curl make \
-    && curl -sSL https://install.python-poetry.org | python \
+    && curl -sSL https://install.python-poetry.org | python - \
     && apt-get clean \
-    && addgroup -S nonroot \
-    && adduser -S nonroot -G nonroot
+    && addgroup --system nonroot \
+    && adduser --system --group nonroot
 
-USER nonroot
-
-WORKDIR /app
-
+WORKDIR /home/nonroot/app
 COPY backend backend
 COPY migrations migrations
 COPY pyproject.toml \
@@ -23,4 +20,7 @@ COPY pyproject.toml \
      .
 
 RUN make install
+USER nonroot
+EXPOSE 8000
+
 ENTRYPOINT ["make", "run-server"]
