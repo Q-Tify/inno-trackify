@@ -19,7 +19,7 @@ run-server: install
 	cd ./backend && poetry run uvicorn app.main:app --reload --host 0.0.0.0
 
 run-frontend: install
-	poetry run streamlit run frontend/app.py
+	poetry run streamlit run frontend/app.py --browser.serverAddress="0.0.0.0"
 
 run: install
 	cd ./backend && poetry run uvicorn app.main:app --reload --host 0.0.0.0 & 
@@ -40,7 +40,7 @@ bandit: install ## Run bandit.
 lint: lint-black lint-flake8 ## Run all linters.
 
 build-frontend: ## Build the docker image.
-	docker build . -t inno-trakify-frontend -f Dockerfile.frontend
+	docker build . -t inno-trackify-frontend -f Dockerfile.frontend
 
 build-backend: ## Build the docker image.
-	docker build . -t inno-trakify-backend -f Dockerfile.backend
+	docker build . -t inno-trackify-backend -f Dockerfile.backend
