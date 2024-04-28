@@ -1,11 +1,7 @@
-import hashlib
 from sqlalchemy.orm import Session
-from fastapi.security import OAuth2PasswordBearer
 from .. import models
-from ..schemas import authentication as schemas
-from ..schemas import users as user_schemas
 from datetime import datetime, timedelta, timezone
-from jose import JWTError, jwt
+from jose import jwt
 from ..config import SECRET_KEY, ALGORITHM, EXPIRE_TIME_MINUTES
 
 

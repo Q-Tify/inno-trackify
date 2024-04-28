@@ -68,13 +68,13 @@ class TestActivityFunctions(unittest.TestCase):
         )
         activity = schemas.ActivityUpdate(
             name="new test activity",
-            description="new test description",
+            description="new description",
             type_id=1,
         )
         updated_activity = update_activity(self.db, 1, activity)
         self.assertEqual(updated_activity.id, 1)
         # self.assertEqual(updated_activity.name, "new test activity")
-        # self.assertEqual(updated_activity.description, "new test description")
+        # self.assertEqual(updated_activity.description, "new description")
 
     @patch("sqlalchemy.orm.Session.query")
     @patch("sqlalchemy.orm.Session.commit")
@@ -83,7 +83,7 @@ class TestActivityFunctions(unittest.TestCase):
         mock_query.return_value.filter.return_value.first.return_value = None
         activity = schemas.ActivityUpdate(
             name="new test activity",
-            description="new test description",
+            description="new description",
             type_id=1,
         )
         updated_activity = update_activity(self.db, 1, activity)

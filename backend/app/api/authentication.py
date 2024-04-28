@@ -1,13 +1,10 @@
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-from typing import Annotated
-from jose import jwt
 from ..database import SessionLocal
 from ..crud import authentication as crud_auth
 from ..crud import users as crud_users
 from ..schemas import authentication as schemas_auth
-from ..schemas import users as schemas_users
 
 router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
@@ -38,7 +35,9 @@ async def create_access_token(
             headers={"WWW-Authenticate": "Bearer"},
         )
     access_token = crud_auth.create_access_token(data={"sub": user.username})
-    return schemas_auth.Token(access_token=access_token, token_type="bearer") # # nosec B106
+    return schemas_auth.Token(
+        access_token=access_token, token_type="bearer"
+    )  # # nosec B106
 
 
 def authenticate_user(db: Session, token: str):
