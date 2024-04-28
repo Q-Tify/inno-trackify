@@ -19,7 +19,7 @@ run-server: install
 	cd ./backend && poetry run uvicorn app.main:app --reload --host 0.0.0.0
 
 run-frontend: install
-	poetry run streamlit run frontend/app.py --browser.serverAddress="0.0.0.0"
+	poetry run streamlit run frontend/1_🏠_Home.py --browser.serverAddress="0.0.0.0"
 
 run: install
 	cd ./backend && poetry run uvicorn app.main:app --reload --host 0.0.0.0 & 
