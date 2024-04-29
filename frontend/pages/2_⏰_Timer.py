@@ -17,9 +17,9 @@ def add_activity(activity_name, type_id, user_id, start_time, end_time, duration
     data = {"name": activity_name,
             "type_id": type_id,
             "user_id": user_id,
-            "start_time": datetime.utcfromtimestamp(start_time).strftime('%Y-%m-%d %H:%M:%S'),
-            "end_time": datetime.utcfromtimestamp(end_time).strftime('%Y-%m-%d %H:%M:%S'),
-            "duration": datetime.utcfromtimestamp(duration).strftime('%H:%M:%S'),
+            "start_time": datetime.fromtimestamp(start_time).strftime('%Y-%m-%d %H:%M:%S'),
+            "end_time": datetime.fromtimestamp(end_time).strftime('%Y-%m-%d %H:%M:%S'),
+            "duration": datetime.fromtimestamp(duration).strftime('%H:%M:%S'),
             "description": description}
 
     headers = {"Authorization": f"Bearer {st.session_state['session_token']}"}
@@ -76,8 +76,6 @@ if st.session_state['session_token']:
     with col3:
         if st.button("Save"):
             if activity_name:
-                # st.session_state['elapsed_time']
-                # print(activity_name)
                 add_activity(activity_name, get_activity_option(activity_option), st.session_state["user_id"], st.session_state["start_time"], st.session_state["start_time"]+st.session_state["elapsed_time"], st.session_state["elapsed_time"], "")
                 if not activity_added:
                     activity_added = not activity_added
@@ -105,7 +103,6 @@ if st.session_state['session_token']:
     with col1:
         if st.button("Play"):
             st.session_state["start_time"] = time.time()
-            # st.session_state['paused_time'] = 0
             st.session_state["timer_running"] = True
             st.session_state["is_stopped"] = False
 
