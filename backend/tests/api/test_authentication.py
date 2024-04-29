@@ -31,11 +31,15 @@ def test_get_db():
 
 
 @patch("backend.app.api.authentication.crud_auth.get_user_username_password")
-def test_create_access_token_valid_user(mock_get_user, client):
+@patch("backend.app.api.authentication.crud_users.get_user_by_username")
+def test_create_access_token_valid_user(mock_get_user, mock_get_user_by_username, client):
     # Mocking the user object returned by get_user_username_password
     mock_user = MagicMock()
     mock_user.username = "testuser"
+    mock_user.id = 1
     mock_get_user.return_value = mock_user
+
+    mock_get_user_by_username.return_value = mock_user
 
     response = client.post(
         "/login", data={"username": "testuser", "password": "testpass"}  # NOSONAR

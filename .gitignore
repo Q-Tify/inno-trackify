@@ -2,6 +2,7 @@
 *.lock
 
 .venv
+.vscode
 reports
 
 .idea
