@@ -1,18 +1,23 @@
 import streamlit as st
 import requests
+from config import GIT_INFO
 
-st.title("InnoTrackify")
-
+st.set_page_config(
+    page_title="InnoTrackify",
+    menu_items={
+        'About': GIT_INFO,
+    }
+)
 
 def register(username, email, password):
-    url = "http://localhost:5000/register"
+    url = "http://localhost:8000/register"
     data = {"username": username, "email": email, "password": password}
     response = requests.post(url, json=data)
     return response.json()
 
 
 def login(username, password):
-    url = "http://localhost:5000/login"
+    url = "http://localhost:8000/login"
     data = {"username": username, "password": password}
     response = requests.post(url, json=data)
     return response.json()
