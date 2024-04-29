@@ -35,8 +35,9 @@ async def create_access_token(
             headers={"WWW-Authenticate": "Bearer"},
         )
     access_token = crud_auth.create_access_token(data={"sub": user.username})
+    client_id = crud_users.get_user_by_username(db, user.username).id
     return schemas_auth.Token(
-        access_token=access_token, token_type="bearer"
+        access_token=access_token, token_type="bearer", client_id=client_id
     )  # # nosec B106
 
 

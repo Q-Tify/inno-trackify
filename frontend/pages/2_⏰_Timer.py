@@ -1,11 +1,19 @@
 import streamlit as st
 import time
 from utils.functions import format_time
+from config import API_URL
+import requests
 
 
-def add_activity(activity_name):
+def add_activity(activity_name, type_id, user_id, start_time, end_time, duration, description):
     url = f"{API_URL}/users/"
-    data = {"grant_type": "", "scope": "", "client_id": "", "client_secret": "", "username": username, "email": email, "password": password}
+    data = {"name": activity_name,
+            "type_id": 0,
+            "user_id": 0,
+            "start_time": "string",
+            "end_time": "string",
+            "duration": "string",
+            "description": "string"}
     response = requests.post(url, json=data)
     return response.json()
 
@@ -53,8 +61,10 @@ if st.session_state['session_token']:
     with col2:
         if st.button("Save"):
             if activity_name:
-                st.session_state['elapsed_time']
-                print(activity_name)
+                # st.session_state['elapsed_time']
+                # print(activity_name)
+                add_activity(activity_name, 0, st.session_state["user_id"], st.session_state["start_time"], st.session_state["start_time"]+st.session_state["elapsed_time"], st.session_state["elapsed_time"], "")
+                st.success("+")
             else:
                 st.error("Please, enter activity name.")
 
