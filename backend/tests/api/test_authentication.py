@@ -34,7 +34,7 @@ def test_create_access_token_valid_user(mock_get_user, client):
     mock_user.username = "testuser"
     mock_get_user.return_value = mock_user
 
-    response = client.post("/login", data={"username": "testuser", "password": "testpass"})
+    response = client.post("/login", data={"username": "testuser", "password": "testpass"}) //NOSONAR
     assert response.status_code == 200
     assert "access_token" in response.json()
     assert response.json()["token_type"] == "bearer"
@@ -46,7 +46,7 @@ def test_create_access_token_invalid_user(mock_get_user, client):
     mock_get_user.return_value = None
 
     with pytest.raises(HTTPException) as exc_info:
-        client.post("/login", data={"username": "invalid", "password": "invalid"})
+        client.post("/login", data={"username": "invalid", "password": "invalid"}) //NOSONAR
 
     assert exc_info.value.status_code == 401
     assert exc_info.value.detail == "Incorrect username or password"

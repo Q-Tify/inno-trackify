@@ -73,8 +73,6 @@ class TestActivityFunctions(unittest.TestCase):
         )
         updated_activity = update_activity(self.db, 1, activity)
         self.assertEqual(updated_activity.id, 1)
-        # self.assertEqual(updated_activity.name, "new test activity")
-        # self.assertEqual(updated_activity.description, "new description")
 
     @patch("sqlalchemy.orm.Session.query")
     @patch("sqlalchemy.orm.Session.commit")
