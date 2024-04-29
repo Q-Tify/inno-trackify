@@ -251,19 +251,19 @@
                class="code sev- "><tt><i>66</i> <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></tt>
             </div>
             <div id="l67"
-               class="code sev- "><tt><i>67</i> <span class="k">def</span> <span class="nf">mock_authenticate_user</span><span class="p">():</span></tt>
+               class="code sev- "><tt><i>67</i> <span class="k">def</span> <span class="nf">mock_authenticate_activity</span><span class="p">():</span></tt>
             </div>
             <div id="l68"
                class="code sev- "><tt><i>68</i>     <span class="k">with</span> <span class="n">patch</span><span class="p">(</span></tt>
             </div>
             <div id="l69"
-               class="code sev- "><tt><i>69</i>         <span class="s2">&quot;backend.app.api.users.authenticate_user&quot;</span><span class="p">,</span> <span class="n">MagicMock</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>69</i>         <span class="s2">&quot;backend.app.api.activities.authenticate_user&quot;</span><span class="p">,</span> <span class="n">MagicMock</span><span class="p">()</span></tt>
             </div>
             <div id="l70"
-               class="code sev- "><tt><i>70</i>     <span class="p">)</span> <span class="k">as</span> <span class="n">mock_authenticate_user</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>70</i>     <span class="p">)</span> <span class="k">as</span> <span class="n">mock_authenticate_activity</span><span class="p">:</span></tt>
             </div>
             <div id="l71"
-               class="code sev- "><tt><i>71</i>         <span class="k">yield</span> <span class="n">mock_authenticate_user</span></tt>
+               class="code sev- "><tt><i>71</i>         <span class="k">yield</span> <span class="n">mock_authenticate_activity</span></tt>
             </div>
             <div id="l72"
                class="code sev- "><tt><i>72</i> &nbsp;</tt>

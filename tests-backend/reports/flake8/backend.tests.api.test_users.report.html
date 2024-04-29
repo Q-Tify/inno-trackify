@@ -54,14 +54,14 @@ window.addEventListener('DOMContentLoaded', function () {
                <span class="count sev-1">
                   1
                </span>
-               <strong>F401:</strong> 'backend.app.api.authentication.authenticate_user' imported but unused
+               <strong>F401:</strong> 'unittest.mock.MagicMock' imported but unused
                
             </a>
             <ul class="details">
             <li>
                
-               <a href="backend.tests.api.test_users.source.html#l5">
-                  <tt><i>5</i> <span class="kn">from</span> <span class="nn">backend.app.api.authentication</span> <span class="kn">import</span> <span class="n">authenticate_user</span></tt>
+               <a href="backend.tests.api.test_users.source.html#l3">
+                  <tt><i>3</i> <span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">MagicMock</span><span class="p">,</span> <span class="n">patch</span></tt>
                </a>
             </li>
             </ul>
@@ -70,11 +70,11 @@ window.addEventListener('DOMContentLoaded', function () {
          <li>
             <a data-code="E501">
                <span class="count sev-2">
-                  19
+                  2
                </span>
                <strong>E501:</strong> line too long (87 > 79 characters)
                
-                  (and 13 similar)
+                  (and 1 similar)
                
             </a>
             <ul class="details">
@@ -82,134 +82,15 @@ window.addEventListener('DOMContentLoaded', function () {
                
                <p>Line too long (87 > 79 characters):</p>
                
-               <a href="backend.tests.api.test_users.source.html#l56">
-                  <tt><i>56</i>         <span class="c1"># Mock the return value of authenticate_user to simulate authentication failure</span></tt>
+               <a href="backend.tests.api.test_users.source.html#l54">
+                  <tt><i>54</i>         <span class="c1"># Mock the return value of authenticate_user to simulate authentication failure</span></tt>
                </a>
             </li><li>
                
                <p>Line too long (107 > 79 characters):</p>
                
-               <a href="backend.tests.api.test_users.source.html#l88">
-                  <tt><i>88</i>         <span class="k">pass</span>  <span class="c1"># StopIteration will be raised when the generator is exhausted, meaning the session is closed</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (81 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l97">
-                  <tt><i>97</i> <span class="c1"># def test_get_users(mock_get_users, mock_authenticate_user, client, db_session):</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (95 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l100">
-                  <tt><i>100</i> <span class="c1">#         {&quot;id&quot;: 1, &quot;email&quot;: &quot;lol1@example.com&quot;, &quot;password&quot;: &quot;password1&quot;, &quot;username&quot;: &quot;user1&quot;},</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (95 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l101">
-                  <tt><i>101</i> <span class="c1">#         {&quot;id&quot;: 2, &quot;email&quot;: &quot;lol2@example.com&quot;, &quot;password&quot;: &quot;password2&quot;, &quot;username&quot;: &quot;user2&quot;},</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (87 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l107">
-                  <tt><i>107</i> <span class="c1">#     response = client.get(&quot;/users/&quot;, headers={&quot;Authorization&quot;: &quot;Bearer valid_token&quot;})</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (85 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l118">
-                  <tt><i>118</i> <span class="c1"># def test_get_user_found(mock_get_user, mock_authenticate_user, client, db_session):</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (128 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l120">
-                  <tt><i>120</i> <span class="c1">#     mock_get_user.return_value = {&quot;id&quot;: 1, &quot;email&quot;: &quot;test@example.com&quot;, &quot;username&quot;: &quot;test_user&quot;, &quot;password&quot;: &quot;dummy_password&quot;}</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (88 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l124">
-                  <tt><i>124</i> <span class="c1">#     response = client.get(&quot;/users/1&quot;, headers={&quot;Authorization&quot;: &quot;Bearer valid_token&quot;})</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (89 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l135">
-                  <tt><i>135</i> <span class="c1"># def test_get_user_not_found(mock_get_user, mock_authenticate_user, client, db_session):</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (81 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l142">
-                  <tt><i>142</i> <span class="c1">#         client.get(&quot;/users/2&quot;, headers={&quot;Authorization&quot;: &quot;Bearer valid_token&quot;})</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (130 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l153">
-                  <tt><i>153</i> <span class="c1">#     user_create_data = {&quot;email&quot;: &quot;test_create_user_valid_email@example.com&quot;, &quot;password&quot;: &quot;password123&quot;, &quot;username&quot;: &quot;test_user&quot;}</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (103 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l167">
-                  <tt><i>167</i> <span class="c1">#     user_create_data = {&quot;email&quot;: &quot;invalid-email&quot;, &quot;password&quot;: &quot;password123&quot;, &quot;username&quot;: &quot;test_user&quot;}</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (85 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l176">
-                  <tt><i>176</i> <span class="c1"># def test_update_user(mock_update_user, mock_authenticate_user, client, db_session):</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (137 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l178">
-                  <tt><i>178</i> <span class="c1">#     mock_update_user.return_value = {&quot;id&quot;: 1, &quot;email&quot;: &quot;updated@example.com&quot;, &quot;username&quot;: &quot;updated_user&quot;, &quot;password&quot;: &quot;dummy_password&quot;}</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (115 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l183">
-                  <tt><i>183</i> <span class="c1">#     user_update_data = {&quot;email&quot;: &quot;updated@example.com&quot;, &quot;username&quot;: &quot;updated_user&quot;, &quot;password&quot;: &quot;dummy_password&quot;}</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (111 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l184">
-                  <tt><i>184</i> <span class="c1">#     response = client.put(&quot;/users/1&quot;, json=user_update_data, headers={&quot;Authorization&quot;: &quot;Bearer valid_token&quot;})</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (85 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l196">
-                  <tt><i>196</i> <span class="c1"># def test_delete_user(mock_delete_user, mock_authenticate_user, client, db_session):</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Line too long (91 > 79 characters):</p>
-               
-               <a href="backend.tests.api.test_users.source.html#l204">
-                  <tt><i>204</i> <span class="c1">#     response = client.delete(&quot;/users/1&quot;, headers={&quot;Authorization&quot;: &quot;Bearer valid_token&quot;})</span></tt>
+               <a href="backend.tests.api.test_users.source.html#l78">
+                  <tt><i>78</i>         <span class="k">pass</span>  <span class="c1"># StopIteration will be raised when the generator is exhausted, meaning the session is closed</span></tt>
                </a>
             </li>
             </ul>
