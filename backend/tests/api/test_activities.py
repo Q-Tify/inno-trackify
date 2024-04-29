@@ -56,9 +56,9 @@ def test_get_current_user_unauthenticated(token, db_session):
 
 
 @pytest.fixture(autouse=True)
-def mock_authenticate_user():
-    with patch("backend.app.api.users.authenticate_user", MagicMock()) as mock_authenticate_user:
-        yield mock_authenticate_user
+def mock_authenticate_activity():
+    with patch("backend.app.api.activities.authenticate_user", MagicMock()) as mock_authenticate_activity:
+        yield mock_authenticate_activity
 
 def test_get_db():
     # Call the get_db function to get the generator
