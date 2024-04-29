@@ -23,7 +23,7 @@ run-frontend: install git-info
 
 run: install git-info
 	cd ./backend && poetry run uvicorn app.main:app --reload --host 0.0.0.0 & 
-	poetry run streamlit run frontend/app.py
+	poetry run streamlit run frontend/1_🏠_Home.py
 
 lint-black: install ## Run black linter.
 	@$(ENV_PREFIX)black -l 79 backend/ frontend/
