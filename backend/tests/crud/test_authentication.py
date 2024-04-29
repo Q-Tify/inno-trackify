@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import patch
 import bcrypt
+import base64
 from sqlalchemy.orm import Session
 
 from backend.app import models
@@ -23,9 +24,9 @@ class TestAuthenticationFunctions(unittest.TestCase):
 
     @patch("sqlalchemy.orm.Session.query")
     def test_get_user_username_password(self, mock_query):
-        hashed_password = bcrypt.hashpw(
+        hashed_password = base64.b64encode(bcrypt.hashpw(
             "test_password".encode("utf-8"), bcrypt.gensalt()
-        )
+        ))
         user_data = models.User(
             id=1, username="test_user", password=hashed_password
         )

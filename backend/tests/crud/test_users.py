@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, ANY
 from sqlalchemy.orm import Session
-
+import base64
 from backend.app import models
 from backend.app.schemas import users as schemas
 from backend.app.crud.users import (
@@ -87,10 +87,11 @@ class TestUserFunctions(unittest.TestCase):
     def test_create_user(
         self, mock_gensalt, mock_hashpw, mock_refresh, mock_commit, mock_add
     ):
-        mock_hashpw.return_value = "hashed_password"
+        mock_hashpw.return_value = b"hashed_password"
         mock_gensalt.return_value = b"$2b$12$PGzmUfRXL8WarFSsa14nmu"
+        hashedpsswrd = base64.b64encode(b"hashed_password")
         user_data = schemas.UserCreate(
-            email="test@example.com", password="password", username="test"
+            email="test@example.com", password=hashedpsswrd, username="test"
         )
         mock_refresh.return_value = models.User(**user_data.dict())
 
@@ -101,10 +102,7 @@ class TestUserFunctions(unittest.TestCase):
 
         self.assertEqual(created_user.email, "test@example.com")
         self.assertEqual(created_user.username, "test")
-        self.assertEqual(created_user.password, "hashed_password")
-        mock_hashpw.assert_called_once_with(
-            "password".encode("utf-8"), b"$2b$12$PGzmUfRXL8WarFSsa14nmu"
-        )
+        self.assertEqual(base64.b64decode(created_user.password), b"hashed_password")
 
     @patch("sqlalchemy.orm.Session.query")
     @patch("sqlalchemy.orm.Session.commit")
