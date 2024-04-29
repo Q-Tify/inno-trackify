@@ -3,10 +3,10 @@ from unittest.mock import patch
 
 from sqlalchemy.orm import Session
 
-from ..app import models
+from backend.app import models
 from datetime import datetime, timedelta, timezone
 from jose import jwt
-from ..app.crud.authentication import (
+from backend.app.crud.authentication import (
     SECRET_KEY,
     get_user_username_password,
     get_username_from_token,
@@ -40,8 +40,7 @@ class TestAuthenticationFunctions(unittest.TestCase):
         decoded_token = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
         self.assertEqual(decoded_token.get("username"), "test_user")
         self.assertTrue(
-            datetime.now(timezone.utc)
-            < datetime.fromtimestamp(decoded_token["exp"], timezone.utc)
+            datetime.now(timezone.utc) < datetime.fromtimestamp(decoded_token["exp"], timezone.utc)
         )
 
     def test_create_access_token__expires_default(self):

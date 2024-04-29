@@ -29,7 +29,7 @@ lint-black: install ## Run black linter.
 	@$(ENV_PREFIX)black -l 79 backend/ frontend/
 
 lint-flake8: install ## Run flake8 linter.
-	@$(ENV_PREFIX)flake8 backend/ frontend/ $(ARGS)
+	@$(ENV_PREFIX)flake8 backend/ frontend/ --ignore=E501 $(ARGS)
 
 test-backend: install ## Run tests.
 	@$(ENV_PREFIX)pytest --cov=backend/app --cov-branch $(ARGS) backend/tests

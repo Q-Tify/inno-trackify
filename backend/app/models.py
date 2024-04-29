@@ -33,18 +33,53 @@ class Activity(Base):
     type = relationship("ActivityType")
     user = relationship("User")
 
+
 Base.metadata.create_all(bind=engine)
 # Fill the Users table with some initial data
 
+base_path = "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons"
+
 activity_types = [
-    {"id": 1, "name": "Sport", "icon_name": "SportLink"},
-    {"id": 2, "name": "Health", "icon_name": "HealthLink"},
-    {"id": 3, "name": "Sleep", "icon_name": "SleepLink"},
-    {"id": 4, "name": "Study", "icon_name": "StudyLink"},
-    {"id": 5, "name": "Rest", "icon_name": "RestLink"},
-    {"id": 6, "name": "Eat", "icon_name": "SportLink"},
-    {"id": 7, "name": "Coding", "icon_name": "CodingLink"},
-    {"id": 8, "name": "Other", "icon_name": "OtherLink"},
+    {
+        "id": 1,
+        "name": "Sport",
+        "icon_name": f"{base_path}/main/Sport.jpg",
+    },
+    {
+        "id": 2,
+        "name": "Health",
+        "icon_name": f"{base_path}/main/Health.jpg",
+    },
+    {
+        "id": 3,
+        "name": "Sleep",
+        "icon_name": f"{base_path}/main/Sleep.jpg",
+    },
+    {
+        "id": 4,
+        "name": "Study",
+        "icon_name": f"{base_path}/main/Study.jpg",
+    },
+    {
+        "id": 5,
+        "name": "Rest",
+        "icon_name": f"{base_path}/main/Rest.jpg",
+    },
+    {
+        "id": 6,
+        "name": "Eat",
+        "icon_name": f"{base_path}/main/Eat.jpg",
+    },
+    {
+        "id": 7,
+        "name": "Coding",
+        "icon_name": f"{base_path}/main/Coding.jpg",
+    },
+    {
+        "id": 8,
+        "name": "Other",
+        "icon_name": f"{base_path}/main/Other.jpg",
+    },
 ]
 
 db = SessionLocal()

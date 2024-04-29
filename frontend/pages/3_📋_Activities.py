@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 from datetime import date, time
 from config import API_URL
 import requests
@@ -60,7 +59,6 @@ if "session_token" not in st.session_state:
     st.session_state["session_token"] = None
 
 if st.session_state['session_token']:
-    # @st.cache_data(show_spinner=False)
     def load_data(activity_option, date_option):
         url = f"{API_URL}/activities/"
         data = None
@@ -79,14 +77,12 @@ if st.session_state['session_token']:
 
         headers = {"Authorization": f"Bearer {st.session_state['session_token']}"}
         response = requests.put(url, headers=headers, params=data)
-        print(response.json())
-        df = pd.DataFrame(form_dataframe(response.json()))
-        return df
 
-    # @st.cache_data(show_spinner=False)
+        return pd.DataFrame(form_dataframe(response.json()))
+
     def split_frame(input_df, rows):
         df = [
-            input_df.loc[i : i + rows - 1, :]
+            input_df.loc[i: i + rows - 1, :]
             for i in range(0, len(input_df), rows)
         ]
         return df

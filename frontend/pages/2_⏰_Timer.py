@@ -139,9 +139,7 @@ if st.session_state['session_token']:
 
     while st.session_state["timer_running"]:
         st.session_state["elapsed_time"] = (
-            st.session_state["paused_time"]
-            + time.time()
-            - st.session_state["start_time"]
+            st.session_state["paused_time"] + time.time() - st.session_state["start_time"]
         )
 
         with placeholder.container():

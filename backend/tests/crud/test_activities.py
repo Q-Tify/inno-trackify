@@ -3,9 +3,9 @@ from unittest.mock import patch
 
 from sqlalchemy.orm import Session
 
-from ..app import models
-from ..app.schemas import activities as schemas
-from ..app.crud.activities import (
+from backend.app import models
+from backend.app.schemas import activities as schemas
+from backend.app.crud.activities import (
     get_activities,
     get_activity,
     update_activity,
@@ -73,8 +73,6 @@ class TestActivityFunctions(unittest.TestCase):
         )
         updated_activity = update_activity(self.db, 1, activity)
         self.assertEqual(updated_activity.id, 1)
-        # self.assertEqual(updated_activity.name, "new test activity")
-        # self.assertEqual(updated_activity.description, "new description")
 
     @patch("sqlalchemy.orm.Session.query")
     @patch("sqlalchemy.orm.Session.commit")
