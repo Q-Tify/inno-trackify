@@ -51,5 +51,5 @@ git-info: ## Insert git info into the git.info file.
 	@echo "GIT_COMMIT_AUTHOR=$(shell git show -s --format=%an HEAD)\n" >> git.info
 	@echo "GIT_COMMIT_MESSAGE=$(shell git show -s --format=%s HEAD)\n" >> git.info
 	@echo "GIT_COMMIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD)\n" >> git.info
-	cp git.info backend/app/git.info
+	cp git.info backend/git.info
 	cp git.info frontend/git.info
