@@ -37,14 +37,14 @@ Base.metadata.create_all(bind=engine)
 # Fill the Users table with some initial data
 
 activity_types = [
-    {"id": 1, "name": "Sport", "icon_name": "SportLink"},
-    {"id": 2, "name": "Health", "icon_name": "HealthLink"},
-    {"id": 3, "name": "Sleep", "icon_name": "SleepLink"},
-    {"id": 4, "name": "Study", "icon_name": "StudyLink"},
-    {"id": 5, "name": "Rest", "icon_name": "RestLink"},
-    {"id": 6, "name": "Eat", "icon_name": "SportLink"},
-    {"id": 7, "name": "Coding", "icon_name": "CodingLink"},
-    {"id": 8, "name": "Other", "icon_name": "OtherLink"},
+    {"id": 1, "name": "Sport", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Sport.jpg"},
+    {"id": 2, "name": "Health", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Health.jpg"},
+    {"id": 3, "name": "Sleep", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Sleep.jpg"},
+    {"id": 4, "name": "Study", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Study.jpg"},
+    {"id": 5, "name": "Rest", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Rest.jpg"},
+    {"id": 6, "name": "Eat", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Eat.jpg"},
+    {"id": 7, "name": "Coding", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Coding.jpg"},
+    {"id": 8, "name": "Other", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Other.jpg"},
 ]
 
 db = SessionLocal()
