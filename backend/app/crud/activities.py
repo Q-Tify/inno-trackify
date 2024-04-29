@@ -4,8 +4,63 @@ from ..schemas import activities as schemas
 
 
 # Функция для получения всех активностей
-def get_activities(db: Session):
-    return db.query(models.Activity).all()
+def get_activities(db: Session, user_id: int):
+    return (
+        db.query(models.Activity)
+        .filter(models.Activity.user_id == user_id)
+        .all()
+    )
+
+
+# Функция для получения всех активностей по типу
+def get_activities_by_type(db: Session, user_id: int, type: str):
+    type = (
+        db.query(models.ActivityType)
+        .filter(models.ActivityType.name == type)
+        .first()
+    )
+    return (
+        db.query(models.Activity)
+        .filter(
+            models.Activity.type_id == type.id
+            and models.Activity.user_id == user_id
+        )
+        .all()
+    )
+
+
+# Функция для получения всех активностей по дате
+def get_activities_by_date(db: Session, user_id: int, date: str):
+    return (
+        db.query(models.Activity)
+        .filter(
+            models.Activity.start_time.contains(date) & models.Activity.user_id
+            == user_id
+        )
+        .all()
+    )
+
+
+# Функция для получения всех активностей по типу и дате
+def get_activities_by_time_date(
+    db: Session, user_id: int, type: str, date: str
+):
+    type = (
+        db.query(models.ActivityType)
+        .filter(models.ActivityType.name == type)
+        .first()
+    )
+    return (
+        db.query(models.Activity)
+        .filter(
+            models.Activity.start_time.contains(date)
+            & (
+                models.Activity.user_id == user_id
+                and models.Activity.type_id == type.id
+            )
+        )
+        .all()
+    )
 
 
 # Функция для получения активности по её идентификатору

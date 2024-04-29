@@ -24,6 +24,11 @@ class ActivityUpdate(ActivityBase):
 # Схема для возвращаемых данных активностей
 class Activity(ActivityBase):
     id: int
+    user_id: int
+    start_time: str
+    end_time: str
+    duration: str
+    description: str
 
     class Config:
         orm_mode = True

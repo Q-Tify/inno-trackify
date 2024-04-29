@@ -39,7 +39,27 @@ def get_activities(
     db: Session = Depends(get_db),
     current_user: users_schemas.User = Depends(get_current_user),
 ):
-    return crud.get_activities(db)
+    return crud.get_activities(db, current_user.id)
+
+
+# Route to fetch all activities
+@router.put("/activities/", response_model=List[schemas.Activity])
+def get_activities_params(
+    type: str | None = None,
+    date: str | None = None,
+    db: Session = Depends(get_db),
+    current_user: users_schemas.User = Depends(get_current_user),
+):
+    if type is None and date is None:
+        return crud.get_activities(db, current_user.id)
+    elif type is None:
+        return crud.get_activities_by_date(db, current_user.id, date)
+    elif date is None:
+        return crud.get_activities_by_type(db, current_user.id, type)
+    else:
+        return crud.get_activities_by_time_date(
+            db, current_user.id, type, date
+        )
 
 
 # Route to fetch a single activity by ID
