@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: backend/tests/api/test_users.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="backend.tests.api.test_users.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               backend/tests/api/test_users.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F401:</strong> 'backend.app.api.authentication.authenticate_user' imported but unused
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="backend.tests.api.test_users.source.html#l5">
+                  <tt><i>5</i> <span class="kn">from</span> <span class="nn">backend.app.api.authentication</span> <span class="kn">import</span> <span class="n">authenticate_user</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  19
+               </span>
+               <strong>E501:</strong> line too long (87 > 79 characters)
+               
+                  (and 13 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l56">
+                  <tt><i>56</i>         <span class="c1"># Mock the return value of authenticate_user to simulate authentication failure</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (107 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l88">
+                  <tt><i>88</i>         <span class="k">pass</span>  <span class="c1"># StopIteration will be raised when the generator is exhausted, meaning the session is closed</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l97">
+                  <tt><i>97</i> <span class="c1"># def test_get_users(mock_get_users, mock_authenticate_user, client, db_session):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l100">
+                  <tt><i>100</i> <span class="c1">#         {&quot;id&quot;: 1, &quot;email&quot;: &quot;lol1@example.com&quot;, &quot;password&quot;: &quot;password1&quot;, &quot;username&quot;: &quot;user1&quot;},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (95 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l101">
+                  <tt><i>101</i> <span class="c1">#         {&quot;id&quot;: 2, &quot;email&quot;: &quot;lol2@example.com&quot;, &quot;password&quot;: &quot;password2&quot;, &quot;username&quot;: &quot;user2&quot;},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (87 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l107">
+                  <tt><i>107</i> <span class="c1">#     response = client.get(&quot;/users/&quot;, headers={&quot;Authorization&quot;: &quot;Bearer valid_token&quot;})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l118">
+                  <tt><i>118</i> <span class="c1"># def test_get_user_found(mock_get_user, mock_authenticate_user, client, db_session):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (128 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l120">
+                  <tt><i>120</i> <span class="c1">#     mock_get_user.return_value = {&quot;id&quot;: 1, &quot;email&quot;: &quot;test@example.com&quot;, &quot;username&quot;: &quot;test_user&quot;, &quot;password&quot;: &quot;dummy_password&quot;}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l124">
+                  <tt><i>124</i> <span class="c1">#     response = client.get(&quot;/users/1&quot;, headers={&quot;Authorization&quot;: &quot;Bearer valid_token&quot;})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (89 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l135">
+                  <tt><i>135</i> <span class="c1"># def test_get_user_not_found(mock_get_user, mock_authenticate_user, client, db_session):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (81 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l142">
+                  <tt><i>142</i> <span class="c1">#         client.get(&quot;/users/2&quot;, headers={&quot;Authorization&quot;: &quot;Bearer valid_token&quot;})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (130 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l153">
+                  <tt><i>153</i> <span class="c1">#     user_create_data = {&quot;email&quot;: &quot;test_create_user_valid_email@example.com&quot;, &quot;password&quot;: &quot;password123&quot;, &quot;username&quot;: &quot;test_user&quot;}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (103 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l167">
+                  <tt><i>167</i> <span class="c1">#     user_create_data = {&quot;email&quot;: &quot;invalid-email&quot;, &quot;password&quot;: &quot;password123&quot;, &quot;username&quot;: &quot;test_user&quot;}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l176">
+                  <tt><i>176</i> <span class="c1"># def test_update_user(mock_update_user, mock_authenticate_user, client, db_session):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (137 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l178">
+                  <tt><i>178</i> <span class="c1">#     mock_update_user.return_value = {&quot;id&quot;: 1, &quot;email&quot;: &quot;updated@example.com&quot;, &quot;username&quot;: &quot;updated_user&quot;, &quot;password&quot;: &quot;dummy_password&quot;}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (115 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l183">
+                  <tt><i>183</i> <span class="c1">#     user_update_data = {&quot;email&quot;: &quot;updated@example.com&quot;, &quot;username&quot;: &quot;updated_user&quot;, &quot;password&quot;: &quot;dummy_password&quot;}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (111 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l184">
+                  <tt><i>184</i> <span class="c1">#     response = client.put(&quot;/users/1&quot;, json=user_update_data, headers={&quot;Authorization&quot;: &quot;Bearer valid_token&quot;})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l196">
+                  <tt><i>196</i> <span class="c1"># def test_delete_user(mock_delete_user, mock_authenticate_user, client, db_session):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (91 > 79 characters):</p>
+               
+               <a href="backend.tests.api.test_users.source.html#l204">
+                  <tt><i>204</i> <span class="c1">#     response = client.delete(&quot;/users/1&quot;, headers={&quot;Authorization&quot;: &quot;Bearer valid_token&quot;})</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>
