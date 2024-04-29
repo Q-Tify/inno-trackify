@@ -43,21 +43,20 @@ def get_activities_by_date(db: Session, user_id: int, date: str):
 
 # Функция для получения всех активностей по типу и дате
 def get_activities_by_time_date(
-    db: Session, user_id: int, type: str, date: str
+    db: Session, user_id: int, type_: str, date: str
 ):
-    type = (
+    type_ = (
         db.query(models.ActivityType)
-        .filter(models.ActivityType.name == type)
+        .filter(models.ActivityType.name == type_)
         .first()
     )
+    print("sdjhfhsdjkfhkjsdjkfhdshfjkhdsk")
     return (
         db.query(models.Activity)
         .filter(
-            models.Activity.start_time.contains(date)
-            & (
-                models.Activity.user_id == user_id
-                and models.Activity.type_id == type.id
-            )
+            models.Activity.start_time.contains(date),
+            models.Activity.user_id == user_id,
+            models.Activity.type_id == type_.id
         )
         .all()
     )

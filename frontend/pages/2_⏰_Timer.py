@@ -3,27 +3,35 @@ import time
 from utils.functions import format_time
 from config import API_URL
 import requests
+from datetime import datetime
 
 activity_types = [
-    {"id": 1, "name": "Sport", "icon_name": "SportLink"},
-    {"id": 2, "name": "Health", "icon_name": "HealthLink"},
-    {"id": 3, "name": "Sleep", "icon_name": "SleepLink"},
-    {"id": 4, "name": "Study", "icon_name": "StudyLink"},
-    {"id": 5, "name": "Rest", "icon_name": "RestLink"},
-    {"id": 6, "name": "Eat", "icon_name": "SportLink"},
-    {"id": 7, "name": "Coding", "icon_name": "CodingLink"},
-    {"id": 8, "name": "Other", "icon_name": "OtherLink"},
+    {"id": 1, "name": "Sport", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Sport.jpg"},
+    {"id": 2, "name": "Health", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Health.jpg"},
+    {"id": 3, "name": "Sleep", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Sleep.jpg"},
+    {"id": 4, "name": "Study", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Study.jpg"},
+    {"id": 5, "name": "Rest", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Rest.jpg"},
+    {"id": 6, "name": "Eat", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Eat.jpg"},
+    {"id": 7, "name": "Coding", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Coding.jpg"},
+    {"id": 8, "name": "Other", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Other.jpg"},
 ]
 
+def get_activity_option(activity_option):
+    for activity in activity_types:
+        if activity["name"] == activity_option:
+            print(activity["id"])
+            return activity["id"]
+
 def add_activity(activity_name, type_id, user_id, start_time, end_time, duration, description):
-    url = f"{API_URL}/users/"
+    url = f"{API_URL}/activities/"
     data = {"name": activity_name,
-            "type_id": 0,
-            "user_id": 0,
-            "start_time": "string",
-            "end_time": "string",
-            "duration": "string",
-            "description": "string"}
+            "type_id": type_id,
+            "user_id": user_id,
+            "start_time": datetime.utcfromtimestamp(start_time).strftime('%Y-%m-%d %H:%M:%S'),
+            "end_time": datetime.utcfromtimestamp(end_time).strftime('%Y-%m-%d %H:%M:%S'),
+            "duration": datetime.utcfromtimestamp(duration).strftime('%H:%M:%S'),
+            "description": description}
+
     headers = {"Authorization": f"Bearer {st.session_state['session_token']}"}
     response = requests.post(url, headers=headers, json=data)
     return response.json()
@@ -43,6 +51,8 @@ if "session_token" not in st.session_state:
 
 if st.session_state['session_token']:
     # start_time = time.time()
+    activity_added = False
+    activity_error = False
     elapsed_time = 0
     if "start_time" not in st.session_state:
         st.session_state["start_time"] = time.time()
@@ -59,7 +69,7 @@ if st.session_state['session_token']:
     if "is_stopped" not in st.session_state:
         st.session_state["is_stopped"] = False
 
-    col1, col2 = st.columns([0.85, 0.15], gap="small")
+    col1, col2, col3 = st.columns([0.65, 0.2, 0.15], gap="small")
 
     with col1:
         activity_name = st.text_input(
@@ -70,14 +80,21 @@ if st.session_state['session_token']:
         )
 
     with col2:
+        activity_option = st.selectbox(
+            "Activity type", ("Sport", "Health", "Sleep", "Study", "Rest", "Eat", "Coding", "Other"), label_visibility="collapsed"
+        )
+
+    with col3:
         if st.button("Save"):
             if activity_name:
                 # st.session_state['elapsed_time']
                 # print(activity_name)
-                add_activity(activity_name, 0, st.session_state["user_id"], st.session_state["start_time"], st.session_state["start_time"]+st.session_state["elapsed_time"], st.session_state["elapsed_time"], "")
-                st.success("+")
+                add_activity(activity_name, get_activity_option(activity_option), st.session_state["user_id"], st.session_state["start_time"], st.session_state["start_time"]+st.session_state["elapsed_time"], st.session_state["elapsed_time"], "")
+                if not activity_added:
+                    activity_added = not activity_added
             else:
-                st.error("Please, enter activity name.")
+                if not activity_error:
+                    activity_error = not activity_error
 
     st.container(height=1, border=False)
 
@@ -86,6 +103,14 @@ if st.session_state['session_token']:
     )
 
     placeholder = st.empty()
+    
+    if activity_added:
+        activity_added = not activity_added
+        st.success("Activity added.")
+    
+    if activity_error:
+        activity_error = not activity_error
+        st.error("Please, enter activity name.")
 
     # Убирать кнопку play при нажатии
     with col1:
