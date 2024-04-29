@@ -48,7 +48,7 @@ if choice == "Login":
             # Redirect to another page or perform other actions
             st.success("Login success. Now you can access other pages.")
         else:
-            st.error(respons["detail"])
+            st.error(response["detail"])
 else:
     username = st.text_input("Username:")
     email = st.text_input("Email:")
