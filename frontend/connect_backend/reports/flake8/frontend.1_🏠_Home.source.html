@@ -101,63 +101,60 @@
                class="code sev- "><tt><i>28</i> <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span></tt>
             </div>
             <div id="l29"
-               class="code sev- "><tt><i>29</i> &nbsp;</tt>
+               class="code sev- "><tt><i>29</i>     <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_URL</span><span class="si">}</span><span class="s2">/login&quot;</span></tt>
             </div>
             <div id="l30"
-               class="code sev- "><tt><i>30</i>     <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_URL</span><span class="si">}</span><span class="s2">/login&quot;</span></tt>
+               class="code sev- "><tt><i>30</i>     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span></tt>
             </div>
             <div id="l31"
-               class="code sev- "><tt><i>31</i>     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span></tt>
+               class="code sev- "><tt><i>31</i>         <span class="s2">&quot;accept&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span></tt>
             </div>
             <div id="l32"
-               class="code sev- "><tt><i>32</i>         <span class="s2">&quot;accept&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>32</i>         <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">,</span></tt>
             </div>
             <div id="l33"
-               class="code sev- "><tt><i>33</i>         <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>33</i>     <span class="p">}</span></tt>
             </div>
             <div id="l34"
-               class="code sev- "><tt><i>34</i>     <span class="p">}</span></tt>
+               class="code sev- "><tt><i>34</i>     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span></tt>
             </div>
             <div id="l35"
-               class="code sev- "><tt><i>35</i>     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span></tt>
+               class="code sev- "><tt><i>35</i>         <span class="s2">&quot;grant_type&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span></tt>
             </div>
             <div id="l36"
-               class="code sev- "><tt><i>36</i>         <span class="s2">&quot;grant_type&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>36</i>         <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span></tt>
             </div>
             <div id="l37"
-               class="code sev- "><tt><i>37</i>         <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>37</i>         <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span></tt>
             </div>
             <div id="l38"
-               class="code sev- "><tt><i>38</i>         <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>38</i>         <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span></tt>
             </div>
             <div id="l39"
-               class="code sev- "><tt><i>39</i>         <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>39</i>         <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span></tt>
             </div>
             <div id="l40"
-               class="code sev- "><tt><i>40</i>         <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>40</i>         <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span></tt>
             </div>
             <div id="l41"
-               class="code sev- "><tt><i>41</i>         <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span></tt>
+               class="code sev- "><tt><i>41</i>     <span class="p">}</span></tt>
             </div>
             <div id="l42"
-               class="code sev- "><tt><i>42</i>     <span class="p">}</span></tt>
+               class="code sev- "><tt><i>42</i>     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></tt>
             </div>
             <div id="l43"
-               class="code sev- "><tt><i>43</i>     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>43</i>     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></tt>
             </div>
             <div id="l44"
-               class="code sev- "><tt><i>44</i>     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></tt>
+               class="code sev- "><tt><i>44</i> &nbsp;</tt>
             </div>
             <div id="l45"
                class="code sev- "><tt><i>45</i> &nbsp;</tt>
             </div>
             <div id="l46"
-               class="code sev- "><tt><i>46</i> &nbsp;</tt>
+               class="code sev- "><tt><i>46</i> <span class="c1"># st.markdown(&quot;&quot;&quot;</span></tt>
             </div>
             <div id="l47"
-               class="code sev- "><tt><i>47</i> <span class="c1"># st.markdown(&quot;&quot;&quot;</span></tt>
-            </div>
-            <div id="l48"
                class="code sev-2  le">
                <ul class="violations">
                
@@ -167,66 +164,84 @@
                      </span>
                      Line too long (246 > 79 characters)</li>
                
-               </ul><tt><i>48</i> <span class="c1"># InnoTrackify is the ultimate solution for individuals seeking to efficiently track and manage their daily activities, offering a comprehensive suite of features tailored to meet diverse user needs while prioritizing usability and functionality.</span></tt>
+               </ul><tt><i>47</i> <span class="c1"># InnoTrackify is the ultimate solution for individuals seeking to efficiently track and manage their daily activities, offering a comprehensive suite of features tailored to meet diverse user needs while prioritizing usability and functionality.</span></tt>
+            </div>
+            <div id="l48"
+               class="code sev- "><tt><i>48</i> <span class="c1"># &quot;&quot;&quot;)</span></tt>
             </div>
             <div id="l49"
-               class="code sev- "><tt><i>49</i> <span class="c1"># &quot;&quot;&quot;)</span></tt>
+               class="code sev- "><tt><i>49</i> &nbsp;</tt>
             </div>
             <div id="l50"
-               class="code sev- "><tt><i>50</i> &nbsp;</tt>
+               class="code sev- "><tt><i>50</i> <span class="k">if</span> <span class="s2">&quot;session_token&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">:</span></tt>
             </div>
             <div id="l51"
-               class="code sev- "><tt><i>51</i> <span class="k">if</span> <span class="s2">&quot;session_token&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>51</i>     <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;session_token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></tt>
             </div>
             <div id="l52"
-               class="code sev- "><tt><i>52</i>     <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;session_token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></tt>
+               class="code sev- "><tt><i>52</i> &nbsp;</tt>
             </div>
             <div id="l53"
-               class="code sev- "><tt><i>53</i> &nbsp;</tt>
+               class="code sev- "><tt><i>53</i> <span class="k">if</span> <span class="s2">&quot;user_id&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">:</span></tt>
             </div>
             <div id="l54"
-               class="code sev- "><tt><i>54</i> <span class="n">choice</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s2">&quot;Login/Signup&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Sign-up&quot;</span><span class="p">,</span> <span class="s2">&quot;Login&quot;</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>54</i>     <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></tt>
             </div>
             <div id="l55"
                class="code sev- "><tt><i>55</i> &nbsp;</tt>
             </div>
             <div id="l56"
-               class="code sev- "><tt><i>56</i> <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;Login&quot;</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>56</i> <span class="n">choice</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s2">&quot;Login/Signup&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Sign-up&quot;</span><span class="p">,</span> <span class="s2">&quot;Login&quot;</span><span class="p">])</span></tt>
             </div>
             <div id="l57"
-               class="code sev- "><tt><i>57</i>     <span class="n">username</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Username:&quot;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>57</i> &nbsp;</tt>
             </div>
             <div id="l58"
-               class="code sev- "><tt><i>58</i>     <span class="n">password</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Password:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>58</i> <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;Login&quot;</span><span class="p">:</span></tt>
             </div>
             <div id="l59"
-               class="code sev- "><tt><i>59</i> &nbsp;</tt>
+               class="code sev- "><tt><i>59</i>     <span class="n">username</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Username:&quot;</span><span class="p">)</span></tt>
             </div>
             <div id="l60"
-               class="code sev- "><tt><i>60</i>     <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;Login&quot;</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>60</i>     <span class="n">password</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Password:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">)</span></tt>
             </div>
             <div id="l61"
-               class="code sev- "><tt><i>61</i>         <span class="n">response</span> <span class="o">=</span> <span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>61</i> &nbsp;</tt>
             </div>
             <div id="l62"
-               class="code sev- "><tt><i>62</i>         <span class="k">if</span> <span class="s2">&quot;access_token&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>62</i>     <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;Login&quot;</span><span class="p">):</span></tt>
             </div>
             <div id="l63"
-               class="code sev- "><tt><i>63</i>             <span class="n">session_token</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span></tt>
+               class="code sev- "><tt><i>63</i>         <span class="n">response</span> <span class="o">=</span> <span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span></tt>
             </div>
             <div id="l64"
-               class="code sev- "><tt><i>64</i>             <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;session_token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">session_token</span></tt>
+               class="code sev- "><tt><i>64</i>         <span class="k">if</span> <span class="s2">&quot;access_token&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span></tt>
             </div>
             <div id="l65"
-               class="code sev- "><tt><i>65</i>             <span class="c1"># Redirect to another page or perform other actions</span></tt>
+               class="code sev- "><tt><i>65</i>             <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></tt>
             </div>
             <div id="l66"
-               class="code sev- "><tt><i>66</i>             <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Login success. Now you can access other pages.&quot;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>66</i>             <span class="n">session_token</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span></tt>
             </div>
             <div id="l67"
-               class="code sev- "><tt><i>67</i>         <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>67</i>             <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;session_token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">session_token</span></tt>
             </div>
             <div id="l68"
+               class="code sev- "><tt><i>68</i>             <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;client_id&quot;</span><span class="p">]</span></tt>
+            </div>
+            <div id="l69"
+               class="code sev- "><tt><i>69</i> &nbsp;</tt>
+            </div>
+            <div id="l70"
+               class="code sev- "><tt><i>70</i>             <span class="c1"># Redirect to another page or perform other actions</span></tt>
+            </div>
+            <div id="l71"
+               class="code sev- "><tt><i>71</i>             <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Login success. Now you can access other pages.&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l72"
+               class="code sev- "><tt><i>72</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l73"
                class="code sev-1  le">
                <ul class="violations">
                
@@ -236,43 +251,43 @@
                      </span>
                      Undefined name 'respons'</li>
                
-               </ul><tt><i>68</i>             <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">respons</span><span class="p">[</span><span class="s2">&quot;detail&quot;</span><span class="p">])</span></tt>
-            </div>
-            <div id="l69"
-               class="code sev- "><tt><i>69</i> <span class="k">else</span><span class="p">:</span></tt>
-            </div>
-            <div id="l70"
-               class="code sev- "><tt><i>70</i>     <span class="n">username</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Username:&quot;</span><span class="p">)</span></tt>
-            </div>
-            <div id="l71"
-               class="code sev- "><tt><i>71</i>     <span class="n">email</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Email:&quot;</span><span class="p">)</span></tt>
-            </div>
-            <div id="l72"
-               class="code sev- "><tt><i>72</i>     <span class="n">password</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Password:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">)</span></tt>
-            </div>
-            <div id="l73"
-               class="code sev- "><tt><i>73</i> &nbsp;</tt>
+               </ul><tt><i>73</i>             <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">respons</span><span class="p">[</span><span class="s2">&quot;detail&quot;</span><span class="p">])</span></tt>
             </div>
             <div id="l74"
-               class="code sev- "><tt><i>74</i>     <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;Sign up&quot;</span><span class="p">):</span></tt>
+               class="code sev- "><tt><i>74</i> <span class="k">else</span><span class="p">:</span></tt>
             </div>
             <div id="l75"
-               class="code sev- "><tt><i>75</i>         <span class="n">response</span> <span class="o">=</span> <span class="n">register</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>75</i>     <span class="n">username</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Username:&quot;</span><span class="p">)</span></tt>
             </div>
             <div id="l76"
-               class="code sev- "><tt><i>76</i> &nbsp;</tt>
+               class="code sev- "><tt><i>76</i>     <span class="n">email</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Email:&quot;</span><span class="p">)</span></tt>
             </div>
             <div id="l77"
-               class="code sev- "><tt><i>77</i>         <span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>77</i>     <span class="n">password</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Password:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">)</span></tt>
             </div>
             <div id="l78"
-               class="code sev- "><tt><i>78</i>             <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;You&#39;re officially registered. Go to login page.&quot;</span><span class="p">)</span></tt>
+               class="code sev- "><tt><i>78</i> &nbsp;</tt>
             </div>
             <div id="l79"
-               class="code sev- "><tt><i>79</i>         <span class="k">else</span><span class="p">:</span></tt>
+               class="code sev- "><tt><i>79</i>     <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;Sign up&quot;</span><span class="p">):</span></tt>
             </div>
             <div id="l80"
-               class="code sev- "><tt><i>80</i>             <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;detail&quot;</span><span class="p">])</span></tt>
+               class="code sev- "><tt><i>80</i>         <span class="n">response</span> <span class="o">=</span> <span class="n">register</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span></tt>
+            </div>
+            <div id="l81"
+               class="code sev- "><tt><i>81</i> &nbsp;</tt>
+            </div>
+            <div id="l82"
+               class="code sev- "><tt><i>82</i>         <span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span></tt>
+            </div>
+            <div id="l83"
+               class="code sev- "><tt><i>83</i>             <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;You&#39;re officially registered. Go to login page.&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l84"
+               class="code sev- "><tt><i>84</i>         <span class="k">else</span><span class="p">:</span></tt>
+            </div>
+            <div id="l85"
+               class="code sev- "><tt><i>85</i>             <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;detail&quot;</span><span class="p">])</span></tt>
             </div>
             
          </div>
