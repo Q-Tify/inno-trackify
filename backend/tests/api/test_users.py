@@ -136,7 +136,7 @@ def test_create_user_valid_email(mock_validate_email, client, db_session):
     mock_validate_email.return_value = True
 
     # Making the request to create a new user
-    user_create_data = {"email": "test@example.com", "password": "password123", "username": "test_user"}
+    user_create_data = {"email": "test_create_user_valid_email@example.com", "password": "password123", "username": "test_user"}
     response = client.post("/users/", json=user_create_data)
 
     # Assertions
