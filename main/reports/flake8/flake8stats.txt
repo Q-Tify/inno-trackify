@@ -7,6 +7,5 @@
 3     E305 expected 2 blank lines after class or function definition, found 1
 2     E711 comparison to None should be 'if cond is None:'
 3     F401 'bcrypt' imported but unused
-1     F821 undefined name 'respons'
 1     W292 no newline at end of file
 8     W293 blank line contains whitespace
