@@ -11,3 +11,4 @@ __pycache__
 .coverage
 .pytest_cache
 source.env
+git.info
