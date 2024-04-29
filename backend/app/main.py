@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from .api import activities, users, authentication, healthz
+from .config import GIT_INFO
 
-app = FastAPI()
+app = FastAPI(description=f"Activity Tracker API<br>{GIT_INFO}")
 
 # Подключаем роуты для активностей и пользователей
 app.include_router(activities.router)

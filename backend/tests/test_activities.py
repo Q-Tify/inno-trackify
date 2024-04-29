@@ -21,8 +21,8 @@ class TestActivityFunctions(unittest.TestCase):
 
     @patch("sqlalchemy.orm.Session.query")
     def test_get_activities(self, mock_query):
-        mock_query.return_value.all.return_value = []
-        activities = get_activities(self.db)
+        mock_query.return_value.filter.return_value.all.return_value = []
+        activities = get_activities(self.db, user_id=1)
         self.assertEqual(activities, [])
 
     @patch("sqlalchemy.orm.Session.query")

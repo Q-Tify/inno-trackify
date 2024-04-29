@@ -1,12 +1,10 @@
 import streamlit as st
 
-st.title('Add activity')
-
+st.title("Add activity")
 
 
 if 'session_token' not in st.session_state:
     st.session_state['session_token'] = None
-
 
 if st.session_state['session_token']:
     activity_name = st.text_input("Activity name:", value="", label_visibility="collapsed",placeholder="Input activity name...")
