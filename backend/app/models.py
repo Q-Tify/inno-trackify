@@ -15,7 +15,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String(100))
     email = Column(String(50))
-    password = Column(String(100))
+    password = Column(String(200))
 
 
 class Activity(Base):
