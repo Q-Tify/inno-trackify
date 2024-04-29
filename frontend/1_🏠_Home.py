@@ -12,15 +12,33 @@ st.set_page_config(
 
 def register(username, email, password):
     url = f"{API_URL}/users/"
-    data = {"grant_type": "", "scope": "", "client_id": "", "client_secret": "", "username": username, "email": email, "password": password}
+    data = {
+        "grant_type": "",
+        "scope": "",
+        "client_id": "",
+        "client_secret": "",
+        "username": username,
+        "email": email,
+        "password": password,
+    }
     response = requests.post(url, json=data)
     return response.json()
 
 
 def login(username, password):
     url = f"{API_URL}/login"
-    headers = {"accept": "application/json", "Content-Type": "application/x-www-form-urlencoded"}
-    data = {"grant_type": "", "username": username, "password": password, "scope": "", "client_id": "", "client_secret": ""}
+    headers = {
+        "accept": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+    }
+    data = {
+        "grant_type": "",
+        "username": username,
+        "password": password,
+        "scope": "",
+        "client_id": "",
+        "client_secret": "",
+    }
     response = requests.post(url, headers=headers, data=data)
     return response.json()
 
@@ -42,7 +60,7 @@ if choice == "Login":
         if "access_token" in response:
             print(response)
             session_token = response["access_token"]
-            st.session_state['session_token'] = session_token
+            st.session_state["session_token"] = session_token
             st.session_state["user_id"] = response["client_id"]
 
             # Redirect to another page or perform other actions
@@ -56,7 +74,7 @@ else:
 
     if st.button("Sign up"):
         response = register(username, email, password)
-        
+
         if "id" in response:
             st.success("You're officially registered. Go to login page.")
         else:

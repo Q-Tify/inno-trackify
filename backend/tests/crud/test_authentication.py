@@ -23,11 +23,19 @@ class TestAuthenticationFunctions(unittest.TestCase):
 
     @patch("sqlalchemy.orm.Session.query")
     def test_get_user_username_password(self, mock_query):
-        hashed_password = bcrypt.hashpw("test_password".encode('utf-8'), bcrypt.gensalt())
-        user_data = models.User(id=1, username="test_user", password=hashed_password)
+        hashed_password = bcrypt.hashpw(
+            "test_password".encode("utf-8"), bcrypt.gensalt()
+        )
+        user_data = models.User(
+            id=1, username="test_user", password=hashed_password
+        )
 
-        mock_query.return_value.filter.return_value.first.return_value = user_data
-        user = get_user_username_password(self.db, "test_user", "test_password")
+        mock_query.return_value.filter.return_value.first.return_value = (
+            user_data
+        )
+        user = get_user_username_password(
+            self.db, "test_user", "test_password"
+        )
 
         self.assertEqual(user.id, 1)
         self.assertEqual(user.username, "test_user")

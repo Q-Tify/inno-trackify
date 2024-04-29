@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from datetime import date, time
 from config import API_URL
 import requests
 from utils.functions import activity_types
@@ -15,13 +14,18 @@ if "activity_option" not in st.session_state:
 if "date_option" not in st.session_state:
     st.session_state["date_option"] = None
 
+
 def update():
-    st.session_state["dataset"] = load_data(st.session_state["activity_option"], st.session_state["date_option"])
+    st.session_state["dataset"] = load_data(
+        st.session_state["activity_option"], st.session_state["date_option"]
+    )
+
 
 def get_activity_icon(activity_type):
     for activity in activity_types:
         if activity["id"] == activity_type:
             return activity["icon_name"]
+
 
 def form_dataframe(response):
     icons = []
@@ -35,7 +39,13 @@ def form_dataframe(response):
         durations.append(activity["duration"])
         dates.append(activity["start_time"])
 
-    return {"icon": icons, "activity_name": activity_names, "duration": durations, "date": dates}
+    return {
+        "icon": icons,
+        "activity_name": activity_names,
+        "duration": durations,
+        "date": dates,
+    }
+
 
 def get_activity_option(activity_option):
     for activity in activity_types:
@@ -43,29 +53,32 @@ def get_activity_option(activity_option):
             print(activity["id"])
             return activity["id"]
 
+
 st.title("Activities")
 
 if "session_token" not in st.session_state:
     st.session_state["session_token"] = None
 
-if st.session_state['session_token']:
+if st.session_state["session_token"]:
+
     def load_data(activity_option, date_option):
         url = f"{API_URL}/activities/"
         data = None
 
         if activity_option == "All":
-            if date_option == None:
+            if date_option is None:
                 data = {}
             else:
                 data = {"date": date_option}
         else:
-            if date_option == None:
-                data = {"type" : activity_option}
+            if date_option is None:
+                data = {"type": activity_option}
             else:
-                data = {"date": date_option, "type" : activity_option}
-       
+                data = {"date": date_option, "type": activity_option}
 
-        headers = {"Authorization": f"Bearer {st.session_state['session_token']}"}
+        headers = {
+            "Authorization": f"Bearer {st.session_state['session_token']}"
+        }
         response = requests.put(url, headers=headers, params=data)
 
         return pd.DataFrame(form_dataframe(response.json()))
@@ -81,14 +94,32 @@ if st.session_state['session_token']:
 
     with col1:
         st.session_state["activity_option"] = st.selectbox(
-            "Filter by activity", ("All", "Sport", "Health", "Sleep", "Study", "Rest", "Eat", "Coding", "Other"),
-            on_change=update
+            "Filter by activity",
+            (
+                "All",
+                "Sport",
+                "Health",
+                "Sleep",
+                "Study",
+                "Rest",
+                "Eat",
+                "Coding",
+                "Other",
+            ),
+            on_change=update,
         )
 
     with col2:
-        st.session_state["date_option"] = st.date_input("Filter by date:", value=None, format="YYYY.MM.DD", on_change=update)
+        st.session_state["date_option"] = st.date_input(
+            "Filter by date:",
+            value=None,
+            format="YYYY.MM.DD",
+            on_change=update,
+        )
 
-    st.session_state["dataset"] = load_data(st.session_state["activity_option"], st.session_state["date_option"])
+    st.session_state["dataset"] = load_data(
+        st.session_state["activity_option"], st.session_state["date_option"]
+    )
     pagination = st.container()
 
     bottom_menu = st.columns((4, 1.5, 1))

@@ -32,7 +32,9 @@ def test_get_db():
 
 @patch("backend.app.api.authentication.crud_auth.get_user_username_password")
 @patch("backend.app.api.authentication.crud_users.get_user_by_username")
-def test_create_access_token_valid_user(mock_get_user, mock_get_user_by_username, client):
+def test_create_access_token_valid_user(
+    mock_get_user, mock_get_user_by_username, client
+):
     # Mocking the user object returned by get_user_username_password
     mock_user = MagicMock()
     mock_user.username = "testuser"
@@ -42,7 +44,8 @@ def test_create_access_token_valid_user(mock_get_user, mock_get_user_by_username
     mock_get_user_by_username.return_value = mock_user
 
     response = client.post(
-        "/login", data={"username": "testuser", "password": "testpass"}  # NOSONAR
+        "/login",
+        data={"username": "testuser", "password": "testpass"},  # NOSONAR
     )
     assert response.status_code == 200
     assert "access_token" in response.json()
@@ -56,7 +59,8 @@ def test_create_access_token_invalid_user(mock_get_user, client):
 
     with pytest.raises(HTTPException) as exc_info:
         client.post(
-            "/login", data={"username": "invalid", "password": "invalid"}  # NOSONAR
+            "/login",
+            data={"username": "invalid", "password": "invalid"},  # NOSONAR
         )
 
     assert exc_info.value.status_code == 401

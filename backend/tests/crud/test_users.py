@@ -1,6 +1,5 @@
 import unittest
 from unittest.mock import patch, ANY
-import bcrypt
 from sqlalchemy.orm import Session
 
 from backend.app import models
@@ -85,27 +84,27 @@ class TestUserFunctions(unittest.TestCase):
     @patch("sqlalchemy.orm.Session.refresh")
     @patch("bcrypt.hashpw")
     @patch("bcrypt.gensalt")
-    def test_create_user(self, mock_gensalt, mock_hashpw, mock_refresh, mock_commit, mock_add):
+    def test_create_user(
+        self, mock_gensalt, mock_hashpw, mock_refresh, mock_commit, mock_add
+    ):
         mock_hashpw.return_value = "hashed_password"
-        mock_gensalt.return_value = b'$2b$12$PGzmUfRXL8WarFSsa14nmu'
+        mock_gensalt.return_value = b"$2b$12$PGzmUfRXL8WarFSsa14nmu"
         user_data = schemas.UserCreate(
             email="test@example.com", password="password", username="test"
         )
         mock_refresh.return_value = models.User(**user_data.dict())
 
         created_user = create_user(self.db, user_data)
-        mock_add.assert_called_once_with(
-            ANY
-        )
+        mock_add.assert_called_once_with(ANY)
         mock_commit.assert_called_once()
-        mock_refresh.assert_called_once_with(
-            ANY
-        )
+        mock_refresh.assert_called_once_with(ANY)
 
         self.assertEqual(created_user.email, "test@example.com")
         self.assertEqual(created_user.username, "test")
         self.assertEqual(created_user.password, "hashed_password")
-        mock_hashpw.assert_called_once_with("password".encode('utf-8'), b'$2b$12$PGzmUfRXL8WarFSsa14nmu')
+        mock_hashpw.assert_called_once_with(
+            "password".encode("utf-8"), b"$2b$12$PGzmUfRXL8WarFSsa14nmu"
+        )
 
     @patch("sqlalchemy.orm.Session.query")
     @patch("sqlalchemy.orm.Session.commit")
