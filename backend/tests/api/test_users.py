@@ -1,6 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 from backend.app.api.users import get_current_user
 from backend.app.api.users import router, get_db
 from starlette.status import HTTP_401_UNAUTHORIZED
@@ -12,9 +12,11 @@ from fastapi import HTTPException
 
 Base.metadata.create_all(bind=engine)
 
+
 @pytest.fixture
 def client():
     return TestClient(router)
+
 
 @pytest.fixture
 def db_session():
@@ -25,12 +27,16 @@ def db_session():
         session.rollback()  # Rollback changes after each test
         session.close()  # Close the session
 
+
 @pytest.fixture
 def token():
     return "valid_token"
 
+
 def test_get_current_user_authenticated(token, db_session):
-    with patch("backend.app.api.users.authenticate_user") as mock_authenticate_user:
+    with patch(
+        "backend.app.api.users.authenticate_user"
+    ) as mock_authenticate_user:
         # Mock the return value of authenticate_user
         mock_authenticate_user.return_value = {"username": "test_user"}
 
@@ -42,8 +48,9 @@ def test_get_current_user_authenticated(token, db_session):
 
 
 def test_get_current_user_unauthenticated(token, db_session):
-    with patch("backend.app.api.users.authenticate_user") as mock_authenticate_user:
-        # Mock the return value of authenticate_user to simulate authentication failure
+    with patch(
+        "backend.app.api.users.authenticate_user"
+    ) as mock_authenticate_user:
         mock_authenticate_user.return_value = None
 
         # Call the function with an invalid token
@@ -54,6 +61,7 @@ def test_get_current_user_unauthenticated(token, db_session):
         assert exc_info.value.status_code == HTTP_401_UNAUTHORIZED
         assert exc_info.value.detail == "Invalid authentication credentials"
         assert exc_info.value.headers == {"WWW-Authenticate": "Bearer"}
+
 
 def test_get_db():
     # Call the get_db function to get the generator
@@ -66,7 +74,8 @@ def test_get_db():
     try:
         next(db_gen)  # Attempt to get the next item from the generator
     except StopIteration:
-        pass  # StopIteration will be raised when the generator is exhausted, meaning the session is closed
+        pass
     else:
-        assert False, "Generator should be exhausted after yielding the database session"
-
+        assert (
+            False
+        ), "Generator should be exhausted after yielding the database session"

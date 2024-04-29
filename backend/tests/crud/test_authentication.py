@@ -40,8 +40,7 @@ class TestAuthenticationFunctions(unittest.TestCase):
         decoded_token = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
         self.assertEqual(decoded_token.get("username"), "test_user")
         self.assertTrue(
-            datetime.now(timezone.utc)
-            < datetime.fromtimestamp(decoded_token["exp"], timezone.utc)
+            datetime.now(timezone.utc) < datetime.fromtimestamp(decoded_token["exp"], timezone.utc)
         )
 
     def test_create_access_token__expires_default(self):

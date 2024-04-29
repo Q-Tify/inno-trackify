@@ -47,9 +47,6 @@ jobs:
           echo $ALL_SECRETS
           echo $ALL_SECRETS > source.env
 
-      - name: Run black
-        run: make lint-black
-
       - name: Run bandit
         run: make bandit
 

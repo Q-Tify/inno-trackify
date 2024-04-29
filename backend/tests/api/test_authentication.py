@@ -6,6 +6,7 @@ from backend.app.api.authentication import authenticate_user
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
 
+
 @pytest.fixture
 def client():
     return TestClient(router)
@@ -22,9 +23,11 @@ def test_get_db():
     try:
         next(db_gen)  # Attempt to get the next item from the generator
     except StopIteration:
-        pass  # StopIteration will be raised when the generator is exhausted, meaning the session is closed
+        pass
     else:
-        assert False, "Generator should be exhausted after yielding the database session"
+        assert (
+            False
+        ), "Generator should be exhausted after yielding the database session"
 
 
 @patch("backend.app.api.authentication.crud_auth.get_user_username_password")
@@ -34,7 +37,9 @@ def test_create_access_token_valid_user(mock_get_user, client):
     mock_user.username = "testuser"
     mock_get_user.return_value = mock_user
 
-    response = client.post("/login", data={"username": "testuser", "password": "testpass"}) ##NOSONAR
+    response = client.post(
+        "/login", data={"username": "testuser", "password": "testpass"}  # NOSONAR
+    )
     assert response.status_code == 200
     assert "access_token" in response.json()
     assert response.json()["token_type"] == "bearer"
@@ -46,10 +51,13 @@ def test_create_access_token_invalid_user(mock_get_user, client):
     mock_get_user.return_value = None
 
     with pytest.raises(HTTPException) as exc_info:
-        client.post("/login", data={"username": "invalid", "password": "invalid"}) ##NOSONAR
+        client.post(
+            "/login", data={"username": "invalid", "password": "invalid"}  # NOSONAR
+        )
 
     assert exc_info.value.status_code == 401
     assert exc_info.value.detail == "Incorrect username or password"
+
 
 def test_authenticate_user_valid_token():
     # Mocking dependencies and database session
@@ -58,11 +66,15 @@ def test_authenticate_user_valid_token():
     username = "test_user"
 
     # Mocking get_username_from_token to return a valid username
-    with patch("backend.app.api.authentication.crud_auth.get_username_from_token") as mock_get_username:
+    with patch(
+        "backend.app.api.authentication.crud_auth.get_username_from_token"
+    ) as mock_get_username:
         mock_get_username.return_value = username
 
         # Mocking get_user_by_username to return a user object
-        with patch("backend.app.api.authentication.crud_users.get_user_by_username") as mock_get_user:
+        with patch(
+            "backend.app.api.authentication.crud_users.get_user_by_username"
+        ) as mock_get_user:
             user_mock = MagicMock()
             mock_get_user.return_value = user_mock
 
@@ -74,13 +86,16 @@ def test_authenticate_user_valid_token():
             mock_get_username.assert_called_once_with(token)
             mock_get_user.assert_called_once_with(db_mock, username)
 
+
 def test_authenticate_user_invalid_token():
     # Mocking dependencies and database session
     db_mock = MagicMock(spec=Session)
     token = "invalid_token"
 
     # Mocking get_username_from_token to return None (invalid token)
-    with patch("backend.app.api.authentication.crud_auth.get_username_from_token") as mock_get_username:
+    with patch(
+        "backend.app.api.authentication.crud_auth.get_username_from_token"
+    ) as mock_get_username:
         mock_get_username.return_value = None
 
         # Call the authenticate_user function
@@ -90,13 +105,16 @@ def test_authenticate_user_invalid_token():
         assert result is None
         mock_get_username.assert_called_once_with(token)
 
+
 def test_authenticate_user_exception():
     # Mocking dependencies and database session
     db_mock = MagicMock(spec=Session)
     token = "valid_token"
 
     # Mocking get_username_from_token to raise an exception
-    with patch("backend.app.api.authentication.crud_auth.get_username_from_token") as mock_get_username:
+    with patch(
+        "backend.app.api.authentication.crud_auth.get_username_from_token"
+    ) as mock_get_username:
         mock_get_username.side_effect = Exception("An error occurred")
 
         # Call the authenticate_user function
@@ -105,4 +123,3 @@ def test_authenticate_user_exception():
         # Assertions
         assert result is None
         mock_get_username.assert_called_once_with(token)
-
