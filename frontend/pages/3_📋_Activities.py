@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 from datetime import date, time
 
 st.title("Activities")
@@ -8,17 +7,21 @@ st.title("Activities")
 if "session_token" not in st.session_state:
     st.session_state["session_token"] = None
 
+root_url = "https://storage.googleapis.com"
+b = f"{root_url}/s4a-prod-share-preview/default/st_app_screenshot_image"
+
 if True or st.session_state["session_token"]:
 
     @st.cache_data(show_spinner=False)
     def load_data():
+
         df = pd.DataFrame(
             {
                 "icon": [
-                    "https://storage.googleapis.com/s4a-prod-share-preview/default/st_app_screenshot_image/5435b8cb-6c6c-490b-9608-799b543655d3/Home_Page.png",
-                    "https://storage.googleapis.com/s4a-prod-share-preview/default/st_app_screenshot_image/ef9a7627-13f2-47e5-8f65-3f69bb38a5c2/Home_Page.png",
-                    "https://storage.googleapis.com/s4a-prod-share-preview/default/st_app_screenshot_image/31b99099-8eae-4ff8-aa89-042895ed3843/Home_Page.png",
-                    "https://storage.googleapis.com/s4a-prod-share-preview/default/st_app_screenshot_image/6a399b09-241e-4ae7-a31f-7640dc1d181e/Home_Page.png",
+                    f"{b}/5435b8cb-6c6c-490b-9608-799b543655d3/Home_Page.png",
+                    f"{b}/ef9a7627-13f2-47e5-8f65-3f69bb38a5c2/Home_Page.png",
+                    f"{b}/31b99099-8eae-4ff8-aa89-042895ed3843/Home_Page.png",
+                    f"{b}/6a399b09-241e-4ae7-a31f-7640dc1d181e/Home_Page.png",
                 ],
                 "activity_name": [
                     "Work",
@@ -45,7 +48,7 @@ if True or st.session_state["session_token"]:
     @st.cache_data(show_spinner=False)
     def split_frame(input_df, rows):
         df = [
-            input_df.loc[i : i + rows - 1, :]
+            input_df.loc[i: i + rows - 1, :]
             for i in range(0, len(input_df), rows)
         ]
         return df
@@ -112,10 +115,5 @@ if True or st.session_state["session_token"]:
         use_container_width=True,
     )
 
-    # pagination.dataframe(data=pages[current_page - 1], use_container_width=True)
-
-    # st.write('You selected:', activity_option + " " + date_option)
-    # number = st.number_input('Insert a number')
-    # st.write('The current number is ', number)
 else:
     st.write("Please, login to your user account.")

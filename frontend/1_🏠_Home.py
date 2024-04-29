@@ -5,9 +5,10 @@ from config import GIT_INFO
 st.set_page_config(
     page_title="InnoTrackify",
     menu_items={
-        'About': GIT_INFO,
-    }
+        "About": GIT_INFO,
+    },
 )
+
 
 def register(username, email, password):
     url = "http://localhost:8000/register"
@@ -22,10 +23,6 @@ def login(username, password):
     response = requests.post(url, json=data)
     return response.json()
 
-
-# st.markdown("""
-# InnoTrackify is the ultimate solution for individuals seeking to efficiently track and manage their daily activities, offering a comprehensive suite of features tailored to meet diverse user needs while prioritizing usability and functionality.
-# """)
 
 if "session_token" not in st.session_state:
     st.session_state["session_token"] = None

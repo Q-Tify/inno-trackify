@@ -47,7 +47,7 @@ while st.session_state["timer_running"]:
             elapsed_time = time.time() - start_time
             print(int(elapsed_time))
             st.markdown("### {}".format(format_time(int(elapsed_time))))
-            if not timer_running:
+            if not st.session_state["timer_running"]:
                 break
 
         col0, col1, col2, col3, col4 = st.columns(
