@@ -3,6 +3,11 @@ import time
 from utils.functions import format_time
 
 
+def add_activity(activity_name):
+    url = f"{API_URL}/users/"
+    data = {"grant_type": "", "scope": "", "client_id": "", "client_secret": "", "username": username, "email": email, "password": password}
+    response = requests.post(url, json=data)
+    return response.json()
 
 def render_timer(seconds):
     _, col2, _ = st.columns([0.4, 0.2, 0.4], gap="small")
@@ -18,7 +23,7 @@ if 'session_token' not in st.session_state:
     st.session_state['session_token'] = None
 
 
-if True or st.session_state['session_token']:
+if st.session_state['session_token']:
     # start_time = time.time()
     elapsed_time = 0
     if 'start_time' not in st.session_state:
@@ -45,8 +50,11 @@ if True or st.session_state['session_token']:
     with col2:
         if st.button("Save"):
             if activity_name:
+                st.session_state['elapsed_time']
                 print(activity_name)
-            print(st.session_state['elapsed_time'])
+            else:
+                st.error("Please, enter activity name.")
+            # print(st.session_state['elapsed_time'])
 
 
     st.container(height=1, border=False)
@@ -98,5 +106,5 @@ if True or st.session_state['session_token']:
         time.sleep(1)
         placeholder.empty()
 else:
-    st.write("Please, login to your user account.")
+    st.error("Please, login to your user account.")
     # st.page_link("pages/page_1.py", label="Page 1", icon="1️⃣")

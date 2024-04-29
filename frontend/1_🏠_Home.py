@@ -1,18 +1,21 @@
 import streamlit as st
 import requests
+from config import API_URL
 
 st.title('InnoTrackify')
 
+
 def register(username, email, password):
-    url = "http://localhost:5000/register"
-    data = {"username": username, "email": email, "password": password}
+    url = f"{API_URL}/users/"
+    data = {"grant_type": "", "scope": "", "client_id": "", "client_secret": "", "username": username, "email": email, "password": password}
     response = requests.post(url, json=data)
     return response.json()
 
 def login(username, password):
-    url = "http://localhost:5000/login"
-    data = {"username": username, "password": password}
-    response = requests.post(url, json=data)
+    url = f"{API_URL}/login"
+    headers = {"accept": "application/json", "Content-Type": "application/x-www-form-urlencoded"}
+    data = {"grant_type": "", "username": username, "password": password, "scope": "", "client_id": "", "client_secret": ""}
+    response = requests.post(url, headers=headers, data=data)
     return response.json()
 
 
@@ -30,22 +33,24 @@ if choice == "Login":
     password = st.text_input("Password:", type="password")
 
     if st.button("Login"):
-        result = login(username, password)
-        if result["success"]:
-            st.success(result["message"])
-            session_token = result["session_token"]
+        response = login(username, password)
+        if "access_token" in response:
+            session_token = response["access_token"]
             st.session_state['session_token'] = session_token
+
             # Redirect to another page or perform other actions
+            st.success("Login success. Now you can access other pages.")
         else:
-            st.error(result["message"])
+            st.error(respons["detail"])
 else:
     username = st.text_input("Username:")
     email = st.text_input("Email:")
     password = st.text_input("Password:", type="password")
 
     if st.button("Sign up"):
-        result = register(username, email, password)
-        if result["success"]:
-            st.success(result["message"])
+        response = register(username, email, password)
+        
+        if "id" in response:
+            st.success("You're officially registered. Go to login page.")
         else:
-            st.error(result["message"])
+            st.error(response["detail"])

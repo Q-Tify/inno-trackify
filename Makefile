@@ -18,7 +18,7 @@ install:          ## Install the project in dev mode.
 run-server: install
 	cd ./backend && poetry run uvicorn app.main:app --reload --host 0.0.0.0
 
-run-frontend: install create-db
+run-frontend: install
 	poetry run streamlit run frontend/1_🏠_Home.py
 
 run: install

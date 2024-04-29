@@ -8,7 +8,7 @@ st.title('Activities')
 if 'session_token' not in st.session_state:
     st.session_state['session_token'] = None
 
-if True or st.session_state['session_token']:
+if st.session_state['session_token']:
     @st.cache_data(show_spinner=False)
     def load_data():
         df = pd.DataFrame(
@@ -116,4 +116,4 @@ if True or st.session_state['session_token']:
     # number = st.number_input('Insert a number')
     # st.write('The current number is ', number)
 else:
-    st.write("Please, login to your user account.")
+    st.error("Please, login to your user account.")
