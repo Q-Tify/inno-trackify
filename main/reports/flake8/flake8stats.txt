@@ -1,2 +1,12 @@
-1     E302 expected 2 blank lines, found 1
-1     F401 'bcrypt' imported but unused
+1     E123 closing bracket does not match indentation of opening bracket's line
+2     E203 whitespace before ':'
+1     E226 missing whitespace around arithmetic operator
+1     E231 missing whitespace after ','
+11    E302 expected 2 blank lines, found 3
+3     E303 too many blank lines (3)
+3     E305 expected 2 blank lines after class or function definition, found 1
+2     E711 comparison to None should be 'if cond is None:'
+3     F401 'bcrypt' imported but unused
+1     F821 undefined name 'respons'
+1     W292 no newline at end of file
+8     W293 blank line contains whitespace
