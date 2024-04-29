@@ -1,5 +1,4 @@
 1     E203 whitespace before ':'
 2     E262 inline comment should start with '# '
-19    E501 line too long (103 > 79 characters)
-5     F401 'backend.app.api.authentication.authenticate_user' imported but unused
-1     F821 undefined name 'timer_running'
+5     E501 line too long (87 > 79 characters)
+4     F401 'backend.app.api.authentication.authenticate_user' imported but unused
