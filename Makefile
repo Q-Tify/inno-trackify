@@ -15,10 +15,7 @@ help:             ## Show the help.
 install:          ## Install the project in dev mode.
 	poetry install --no-root
 
-create-db: install
-	sqlite3 inno-trackify.db < ./migrations/init.sql
-
-run-server: install create-db
+run-server: install
 	cd ./backend && poetry run uvicorn app.main:app --reload --host 0.0.0.0
 
 run-frontend: install
