@@ -57,6 +57,7 @@ def get_activities_by_time_date(
             models.Activity.type_id == type_.id
         )
         .all()
+        )
 
 
 
