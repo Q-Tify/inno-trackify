@@ -3,6 +3,7 @@ from .. import models
 from ..schemas import users as schemas
 import bcrypt
 import re
+import base64
 
 
 # Функция для получения всех юзеров
@@ -40,7 +41,7 @@ def create_user(db: Session, user: schemas.UserCreate):
         user.password.encode("utf-8"), bcrypt.gensalt()
     )
     db_user = models.User(
-        email=user.email, password=hashed_password, username=user.username
+        email=user.email, password=base64.b64encode(hashed_password), username=user.username
     )
     db.add(db_user)
     db.commit()

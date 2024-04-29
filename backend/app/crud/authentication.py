@@ -4,13 +4,14 @@ from . import users
 from jose import jwt
 from ..config import SECRET_KEY, ALGORITHM, EXPIRE_TIME_MINUTES
 import bcrypt
+import base64
 
 
 def get_user_username_password(db: Session, username: str, password: str):
     user = users.get_user_by_username(db, username)
     if not user:
         return False
-    if not bcrypt.checkpw(password.encode("utf-8"), user.password):
+    if not bcrypt.checkpw(password.encode('utf-8'), base64.b64decode(user.password)):
         return False
     return user
 
