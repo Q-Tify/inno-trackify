@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import date, time
 from config import API_URL
 import requests
-
+from utils.functions import activity_types
 
 
 if "dataset" not in st.session_state:
