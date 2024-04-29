@@ -37,11 +37,8 @@ def validate_email(email: str):
 
 # Функция для создания нового пользователя
 def create_user(db: Session, user: schemas.UserCreate):
-    hashed_password = bcrypt.hashpw(
-        user.password.encode("utf-8"), bcrypt.gensalt()
-    )
     db_user = models.User(
-        email=user.email, password=base64.b64encode(hashed_password), username=user.username
+        email=user.email, password=user.password, username=user.username
     )
     db.add(db_user)
     db.commit()
