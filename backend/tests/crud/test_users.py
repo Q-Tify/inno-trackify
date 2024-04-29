@@ -3,9 +3,9 @@ from unittest.mock import patch
 
 from sqlalchemy.orm import Session
 
-from ..app import models
-from ..app.schemas import users as schemas
-from ..app.crud.users import (
+from backend.app import models
+from backend.app.schemas import users as schemas
+from backend.app.crud.users import (
     get_users,
     get_user,
     get_user_by_email,

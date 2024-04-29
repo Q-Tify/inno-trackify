@@ -3,9 +3,9 @@ from unittest.mock import patch
 
 from sqlalchemy.orm import Session
 
-from ..app import models
-from ..app.schemas import activities as schemas
-from ..app.crud.activities import (
+from backend.app import models
+from backend.app.schemas import activities as schemas
+from backend.app.crud.activities import (
     get_activities,
     get_activity,
     update_activity,

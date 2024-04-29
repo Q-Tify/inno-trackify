@@ -3,10 +3,10 @@ from unittest.mock import patch
 
 from sqlalchemy.orm import Session
 
-from ..app import models
+from backend.app import models
 from datetime import datetime, timedelta, timezone
 from jose import jwt
-from ..app.crud.authentication import (
+from backend.app.crud.authentication import (
     SECRET_KEY,
     get_user_username_password,
     get_username_from_token,
