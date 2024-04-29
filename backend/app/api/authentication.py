@@ -32,7 +32,7 @@ async def create_access_token(
         raise HTTPException(
             status_code=401,
             detail="Incorrect username or password",
-            # headers={"WWW-Authenticate": "Bearer"},
+            headers={"WWW-Authenticate": "Bearer"},
         )
     access_token = crud_auth.create_access_token(data={"sub": user.username})
     return schemas_auth.Token(
