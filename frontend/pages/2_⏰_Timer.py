@@ -4,17 +4,7 @@ from utils.functions import format_time
 from config import API_URL
 import requests
 from datetime import datetime
-
-activity_types = [
-    {"id": 1, "name": "Sport", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Sport.jpg"},
-    {"id": 2, "name": "Health", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Health.jpg"},
-    {"id": 3, "name": "Sleep", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Sleep.jpg"},
-    {"id": 4, "name": "Study", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Study.jpg"},
-    {"id": 5, "name": "Rest", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Rest.jpg"},
-    {"id": 6, "name": "Eat", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Eat.jpg"},
-    {"id": 7, "name": "Coding", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Coding.jpg"},
-    {"id": 8, "name": "Other", "icon_name": "https://raw.githubusercontent.com/Wild-Queue/inno-trackify-icons/main/Other.jpg"},
-]
+from utils.functions import activity_types
 
 def get_activity_option(activity_option):
     for activity in activity_types:
@@ -50,7 +40,6 @@ if "session_token" not in st.session_state:
 
 
 if st.session_state['session_token']:
-    # start_time = time.time()
     activity_added = False
     activity_error = False
     elapsed_time = 0
