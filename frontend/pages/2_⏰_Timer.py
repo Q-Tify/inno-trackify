@@ -4,6 +4,16 @@ from utils.functions import format_time
 from config import API_URL
 import requests
 
+activity_types = [
+    {"id": 1, "name": "Sport", "icon_name": "SportLink"},
+    {"id": 2, "name": "Health", "icon_name": "HealthLink"},
+    {"id": 3, "name": "Sleep", "icon_name": "SleepLink"},
+    {"id": 4, "name": "Study", "icon_name": "StudyLink"},
+    {"id": 5, "name": "Rest", "icon_name": "RestLink"},
+    {"id": 6, "name": "Eat", "icon_name": "SportLink"},
+    {"id": 7, "name": "Coding", "icon_name": "CodingLink"},
+    {"id": 8, "name": "Other", "icon_name": "OtherLink"},
+]
 
 def add_activity(activity_name, type_id, user_id, start_time, end_time, duration, description):
     url = f"{API_URL}/users/"
@@ -14,7 +24,8 @@ def add_activity(activity_name, type_id, user_id, start_time, end_time, duration
             "end_time": "string",
             "duration": "string",
             "description": "string"}
-    response = requests.post(url, json=data)
+    headers = {"Authorization": f"Bearer {st.session_state['session_token']}"}
+    response = requests.post(url, headers=headers, json=data)
     return response.json()
 
 def render_timer(seconds):
