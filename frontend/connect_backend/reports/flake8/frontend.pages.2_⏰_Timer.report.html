@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function () {
 </script>
    </head>
    <body>
-      <div id="masthead" class="sev-1"></div>
+      <div id="masthead" class="sev-2"></div>
       <div id="page">
          <p id="srclink">
             <a title="View full annotated source"
@@ -50,50 +50,69 @@ window.addEventListener('DOMContentLoaded', function () {
          <ul id="index">
          
          <li>
-            <a data-code="F821">
-               <span class="count sev-1">
-                  5
+            <a data-code="E302">
+               <span class="count sev-2">
+                  3
                </span>
-               <strong>F821:</strong> undefined name 'API_URL'
-               
-                  (and 4 similar)
+               <strong>E302:</strong> expected 2 blank lines, found 1
                
             </a>
             <ul class="details">
             <li>
                
-               <p>Undefined name 'API_URL':</p>
-               
-               <a href="frontend.pages.2_⏰_Timer.source.html#l7">
-                  <tt><i>7</i>     <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_URL</span><span class="si">}</span><span class="s2">/users/&quot;</span></tt>
+               <a href="frontend.pages.2_⏰_Timer.source.html#l9">
+                  <tt><i>9</i> <span class="k">def</span> <span class="nf">get_activity_option</span><span class="p">(</span><span class="n">activity_option</span><span class="p">):</span></tt>
                </a>
             </li><li>
-               
-               <p>Undefined name 'username':</p>
-               
-               <a href="frontend.pages.2_⏰_Timer.source.html#l13">
-                  <tt><i>13</i>         <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Undefined name 'email':</p>
-               
-               <a href="frontend.pages.2_⏰_Timer.source.html#l14">
-                  <tt><i>14</i>         <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="n">email</span><span class="p">,</span></tt>
-               </a>
-            </li><li>
-               
-               <p>Undefined name 'password':</p>
                
                <a href="frontend.pages.2_⏰_Timer.source.html#l15">
-                  <tt><i>15</i>         <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span></tt>
+                  <tt><i>15</i> <span class="k">def</span> <span class="nf">add_activity</span><span class="p">(</span><span class="n">activity_name</span><span class="p">,</span> <span class="n">type_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span></tt>
                </a>
             </li><li>
                
-               <p>Undefined name 'requests':</p>
+               <a href="frontend.pages.2_⏰_Timer.source.html#l29">
+                  <tt><i>29</i> <span class="k">def</span> <span class="nf">render_timer</span><span class="p">(</span><span class="n">seconds</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  2
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
                
-               <a href="frontend.pages.2_⏰_Timer.source.html#l17">
-                  <tt><i>17</i>     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></tt>
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="frontend.pages.2_⏰_Timer.source.html#l93">
+                  <tt><i>93</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="frontend.pages.2_⏰_Timer.source.html#l97">
+                  <tt><i>97</i>     </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E226">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E226:</strong> missing whitespace around arithmetic operator
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="frontend.pages.2_⏰_Timer.source.html#l79">
+                  <tt><i>79</i>                 <span class="n">add_activity</span><span class="p">(</span><span class="n">activity_name</span><span class="p">,</span> <span class="n">get_activity_option</span><span class="p">(</span><span class="n">activity_option</span><span class="p">),</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">],</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;start_time&quot;</span><span class="p">],</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;start_time&quot;</span><span class="p">]</span><span class="o">+</span><span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;elapsed_time&quot;</span><span class="p">],</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;elapsed_time&quot;</span><span class="p">],</span> <span class="s2">&quot;&quot;</span><span class="p">)</span></tt>
                </a>
             </li>
             </ul>
